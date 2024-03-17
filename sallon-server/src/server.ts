@@ -3,7 +3,6 @@ import userRoutes  from './routes/userRoutes';
 import loggerMiddleWare from './middlewares/loggerMiddleware';
 import { connectDb } from '../config/database';
 
-
 const app = express();
 app.use(loggerMiddleWare)
 
