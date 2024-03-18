@@ -26,8 +26,6 @@ const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
     next();
   } catch (error) {
     console.error('Error verifying token', error);
-    console.log('the token from env is', JWT_SECRET, 'type is' ,typeof(JWT_SECRET));
-    console.log('the token from headers is', token, 'type is' ,typeof(token));
     return res.status(403).json({ error: 'Invalid token' });
   }
 

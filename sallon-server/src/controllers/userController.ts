@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import { User} from '../models/User';
-import { generateToken } from '../Utils/jwtUtils';
+import { generateAccessToken, generateRefreshhToken } from '../Utils/jwtUtils';
 
 
 const register = async (req: Request, res: Response) => {
@@ -39,8 +39,9 @@ const login = async (req: Request, res: Response) => {
     if (!validPassword) {
       res.status(401).json({message: "Invalid Credintails"});
     }
-    const token = generateToken({ userId: user.id, email: user.email });
-    res.status(200).json({message: "Login successful", token});
+    const accessToken = generateAccessToken({ userId: user.id, email: user.email });
+    const refreshToken = generateRefreshhToken({userId: user.id, email: user.email});
+    res.status(200).json({message: "Login successful", accessToken: accessToken, refreshToken: refreshToken});
 
   } catch (error) { 
     console.error('Error logging in', error);
