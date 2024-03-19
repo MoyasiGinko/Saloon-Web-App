@@ -24,25 +24,34 @@ const SignIn = () => {
     }
     else {
       setError("");
-      const req = await axios.post("http://localhost:3000/api/users/login", formData)
-      if (req.status === 200) {
-        const response = req.data
-        console.log('the response req.data is: ', response)
-        localStorage.setItem("name", JSON.stringify(response.name));
-        localStorage.setItem("email", JSON.stringify(response.email));
-        localStorage.setItem("accessToken", JSON.stringify(response.accessToken));
+      try {
+        const req = await axios.post("http://localhost:3000/api/users/login", formData)
+        if (req.status === 200) {
+          const response = req.data
+          localStorage.setItem("name", JSON.stringify(response.name));
+          localStorage.setItem("email", JSON.stringify(response.email));
+          localStorage.setItem("accessToken", JSON.stringify(response.accessToken));
 
-        const cookieName = "refreshToken";
-        const cookieValue = response.refreshToken;
-        const expirationDate = new Date();
-        expirationDate.setMonth(expirationDate.getMonth() + 1); 
-        document.cookie = `${cookieName}=${cookieValue}; expires=${expirationDate.toUTCString()}; path=/; SameSite=strict`;
-        router.push('/profile')
-        toast.success('Login successful')
-
-      }
-      else {
-        setError("email or password is worng")
+          const cookieName = "refreshToken";
+          const cookieValue = response.refreshToken;
+          const expirationDate = new Date();
+          expirationDate.setMonth(expirationDate.getMonth() + 1);
+          document.cookie = `${cookieName}=${cookieValue}; expires=${expirationDate.toUTCString()}; path=/; SameSite=strict`;
+          router.push('/profile')
+          toast.success('Login successful')
+        }
+      } catch (error: unknown) {
+        if (axios.isAxiosError(error) && error.response) {
+          if (error.response.status === 401 && error.response.data.error === 'Invalid Credintails') {
+            setError("Email or password is incorrect")
+          } else {
+            console.log("Error: ", error)
+            setError('An Error has occurred')
+          }
+        } else {
+          console.log("Error:", error);
+          setError("An unKnown error occurred");
+        }
       }
     }
   }

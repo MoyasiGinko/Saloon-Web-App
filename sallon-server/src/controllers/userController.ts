@@ -36,7 +36,7 @@ const login = async (req: Request, res: Response) => {
     }
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) {
-      res.status(401).json({message: "Invalid Credintails"});
+      res.status(401).json({error: "Invalid Credintails"});
     }
     const accessToken = generateAccessToken({ userId: user.id, email: user.email });
     const refreshToken = generateRefreshhToken({userId: user.id, email: user.email});
