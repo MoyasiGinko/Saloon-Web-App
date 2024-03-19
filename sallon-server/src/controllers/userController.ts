@@ -3,7 +3,6 @@ import bcrypt from 'bcryptjs';
 import { User} from '../models/User';
 import { generateAccessToken, generateRefreshhToken } from '../Utils/jwtUtils';
 
-
 const register = async (req: Request, res: Response) => {
   try {
     const { firstName, lastName, email, password, cPassword }: { firstName: string, lastName: string, email: string, password: string, cPassword: string } = req.body;
@@ -41,7 +40,7 @@ const login = async (req: Request, res: Response) => {
     }
     const accessToken = generateAccessToken({ userId: user.id, email: user.email });
     const refreshToken = generateRefreshhToken({userId: user.id, email: user.email});
-    res.status(200).json({message: "Login successful", accessToken: accessToken, refreshToken: refreshToken});
+    res.status(200).json({message: "Login successful", name: user.firstName + user.lastName, email: user.email, accessToken: accessToken, refreshToken: refreshToken});
 
   } catch (error) { 
     console.error('Error logging in', error);

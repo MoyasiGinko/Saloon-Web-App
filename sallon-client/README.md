@@ -1,30 +1,68 @@
-# React + TypeScript + Vite
+# Blood-Help Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Blood-Help is a full-stack web application that connects users with blood donors in their vicinity. Users can easily find and contact potential donors, making it a convenient solution during emergencies.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **User Authentication:** Secure registration and login functionality for users and donors.
 
-## Expanding the ESLint configuration
+- **Find Donors:** Users can search for blood donors based on their location and blood type.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Direct Contact:** Users can directly call donors to request assistance.
 
-- Configure the top-level `parserOptions` property like this:
+- **Responsive Design:** Next.js ensures a responsive and efficient frontend.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Tech Stack
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- **Frontend:** Next.js
+- **Backend:** Django
+- **Database:** PostgreSQL
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   https://github.com/ibugithub/blood-help.git
+Set up the backend:
+
+Install Django dependencies:
+
+bash
+Copy code
+cd backend
+pip install -r requirements.txt
+Run migrations:
+
+bash
+Copy code
+python manage.py migrate
+Start the backend server:
+
+bash
+Copy code
+python manage.py runserver
+Set up the frontend:
+
+Install Next.js dependencies:
+
+bash
+Copy code
+cd frontend
+npm install
+Run the frontend application:
+
+bash
+Copy code
+npm run dev
+Access the application:
+
+Open your browser and navigate to http://localhost:3000.
+
+Configuration
+Update the PostgreSQL database settings in the backend's settings.py file.
+Contributing
+We welcome contributions! If you find a bug or have a feature request, please open an issue. Pull requests are also encouraged.
+
+License
+This project is licensed under the MIT License.
