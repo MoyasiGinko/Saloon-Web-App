@@ -21,11 +21,13 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
   } 
   try {
     const user = jwt.verify(token, JWT_SECRET);
-    console.log('the user is', user);
-    next();
+    return res.status(200).json({message: 'User authentacted'});
   } catch (error) {
     console.error('Error verifying token', error);
-    return res.status(403).json({ error: 'Invalid token' });
+    if(error instanceof jwt.TokenExpiredError){
+      return refreshToken(req, res, next);
+    };
+    return res.status(403).json({ error: 'unknown error' });
   }
 
 };
@@ -41,9 +43,10 @@ export const refreshToken = (req: Request, res: Response, next: NextFunction) =>
     const user = jwt.verify(refreshToken, JWT_SECRET) as JwtPayload
     const accessToken = generateAccessToken({userId: user.id, email: user.email})
     console.log('***Refresh token is verified***')
+    console.log('********new accesstokens is *****', accessToken);
     return res.status(200).json({message: 'Refresh Token has verified', accessToken: accessToken})
   } catch ( error) {
-    console.log('I am in error state')
+    console.log('I am in error state', error)
     return res.status(403).json({ message: 'Invalid refresh  token' })
   }
 }

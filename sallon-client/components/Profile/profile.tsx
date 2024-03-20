@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Protected } from '../utils/protectRoutes';
 
 const Profile = () => {
-  const isAuthenticated = Protected('http://localhost:3000/api/users/profile');
+  const isAuthenticated = Protected('http://localhost:3000/api/users/authenticate');
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",

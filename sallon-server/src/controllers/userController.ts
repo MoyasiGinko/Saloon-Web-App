@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import { User} from '../models/User';
 import { generateAccessToken, generateRefreshhToken } from '../Utils/jwtUtils';
 
-const register = async (req: Request, res: Response) => {
+export const register = async (req: Request, res: Response) => {
   try {
     const { firstName, lastName, email, password, cPassword }: { firstName: string, lastName: string, email: string, password: string, cPassword: string } = req.body;
 
@@ -27,7 +27,7 @@ const register = async (req: Request, res: Response) => {
   }
 }
 
-const login = async (req: Request, res: Response) => { 
+export const login = async (req: Request, res: Response) => { 
   try {
     const {email, password} = req.body;
     const user = await User.findOne({email})
@@ -48,8 +48,7 @@ const login = async (req: Request, res: Response) => {
   }
 };
 
-const profile = (req: Request, res: Response) => {
-  res.send("This is profile")
+export const authenticate = (req: Request, res: Response) => {
+  res.send("user successfully authenticated")
 }
 
-export { register, login, profile}
