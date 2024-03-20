@@ -1,27 +1,27 @@
 'use client'
-import React, {useState, useEffect } from 'react';
-import { getCookie } from 'cookies-next';
+import React, { useState, useEffect } from 'react';
+import { Protected } from '../utils/protectRoutes';
 
 const Profile = () => {
+  const isAuthenticated = Protected('http://localhost:3000/api/users/profile');
   const [userInfo, setUserInfo] = useState({
-    name : "",
+    name: "",
     email: "",
-    accessToken: "",
-    refreshToken: ""
-  })
-
+  });
+  
   useEffect(() => {
     const storedName = localStorage.getItem("name") ?? "";
     const storedEmail = localStorage.getItem("email") ?? "";
-    const storedAccessToken = localStorage.getItem("accessToken") ?? "";
-    const storedRefreshToken = getCookie("refreshToken") ?? "";
     setUserInfo({
       name: storedName,
       email: storedEmail,
-      accessToken: storedAccessToken,
-      refreshToken: storedRefreshToken
-    })
-  },[])
+    });
+  }, []);
+
+  if(!isAuthenticated)
+  {
+    return <p>Loading....</p>
+  }
 
   return (
     <>
@@ -30,10 +30,8 @@ const Profile = () => {
         <p>Name: {userInfo.name}</p>
         <p>Email: {userInfo.email}</p>
       </div>
-      <div className='px-4 w-[80%] mx-auto overflow-x-auto mb-10'>Access Token: {userInfo.accessToken}</div>
-      <div className='px-4 w-[80%] mx-auto overflow-x-auto'>Refresh Token: {userInfo.refreshToken}</div>
     </>
-  )
-}
+  );
+};
 
 export default Profile;
