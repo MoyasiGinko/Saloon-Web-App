@@ -1,9 +1,6 @@
 import Profile from "@/components/Profile/profile";
 
 const Page = () => {
-  return (
-    <Profile />
-  )
-
-}
+  return <Profile />;
+};
 export default Page;
