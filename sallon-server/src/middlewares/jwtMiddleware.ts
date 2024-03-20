@@ -32,16 +32,18 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
 
 export const refreshToken = (req: Request, res: Response, next: NextFunction) => {
   const refreshToken = req.cookies.refreshToken;
-  console.log('the cookies are', refreshToken);
+  console.log('********the refresh tokens are *****', refreshToken);
   if (!refreshToken) {
+    console.log('****refresh token is missing****');
     return res.status(401).json({ error: "Refresh token is missing"})
   }
   try {
     const user = jwt.verify(refreshToken, JWT_SECRET) as JwtPayload
     const accessToken = generateAccessToken({userId: user.id, email: user.email})
-    res.setHeader('Authorization', `Bearer ${accessToken}`)
-    next()
+    console.log('***Refresh token is verified***')
+    return res.status(200).json({message: 'Refresh Token has verified', accessToken: accessToken})
   } catch ( error) {
+    console.log('I am in error state')
     return res.status(403).json({ message: 'Invalid refresh  token' })
   }
 }
