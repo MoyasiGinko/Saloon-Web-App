@@ -20,8 +20,8 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
     return res.status(401).json({ message: 'Unauthorized' });
   } 
   try {
-    const user = jwt.verify(token, JWT_SECRET);
-    return res.status(200).json({message: 'User authentacted'});
+    jwt.verify(token, JWT_SECRET);
+    next();
   } catch (error) {
     console.error('Error verifying token', error);
     if(error instanceof jwt.TokenExpiredError){

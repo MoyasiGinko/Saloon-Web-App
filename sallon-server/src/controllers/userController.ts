@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import { User} from '../models/User';
 import { generateAccessToken, generateRefreshhToken } from '../Utils/jwtUtils';
+import { clearCookie } from '../Utils/clearCookie';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -49,6 +50,9 @@ export const login = async (req: Request, res: Response) => {
 };
 
 export const authenticate = (req: Request, res: Response) => {
-  res.send("user successfully authenticated")
+  res.status(200).json({message: "user successfully authenticated"})
 }
 
+export const logout = (req: Request, res:Response) => {
+  clearCookie(res, 'refreshToken');
+}

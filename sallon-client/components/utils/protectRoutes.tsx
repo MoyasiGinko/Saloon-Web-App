@@ -3,9 +3,9 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-export const Protected = (route: string) => {
-
-  const router = useRouter();;
+export const Protected = () => {
+  const route = 'http://localhost:3000/api/users/authenticate'
+  const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
