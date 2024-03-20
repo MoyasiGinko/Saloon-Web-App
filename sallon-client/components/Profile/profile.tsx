@@ -30,7 +30,7 @@ const Profile = () => {
     } 
     const parsedAccessToken = JSON.parse(accessToken)
     const headers = { 'authorization': `Bearer ${parsedAccessToken}` };
-    const response = await axios.post('http://localhost:3000/api/users/logout', null, {headers: headers})
+    const response = await axios.post('http://localhost:3000/api/users/logout', null, {headers: headers, withCredentials: true})
     if (accessToken) {
       localStorage.removeItem('accessToken');
     }
