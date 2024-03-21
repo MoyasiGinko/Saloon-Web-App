@@ -1,13 +1,6 @@
-import  mongoose, { Schema, Document } from 'mongoose' 
+import  mongoose from 'mongoose' 
 
-export interface User extends Document {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-} 
-
-const userSchema: Schema<User> = new Schema({
+const userSchema = new mongoose.Schema({
  firstName: { type: String, required: true },
  lastName: { type: String, required: true},
  email: { type: String, required: true, unique: true },
@@ -17,6 +10,6 @@ const userSchema: Schema<User> = new Schema({
 userSchema.methods.getFullName = function() {
   return `${this.firstName} ${this.lastName} `
 }
-const User = mongoose.model<User>('User', userSchema);
 
-export {User}
+export const User = mongoose.model('User', userSchema);
+
