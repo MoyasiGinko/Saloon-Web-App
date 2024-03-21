@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-const uri = "mongodb+srv://outsideworkibrahim:Gpu57mlt31IjBMvA@sallondb.71gszpy.mongodb.net/?retryWrites=true&w=majority&appName=SallonDB";
+import '../dotenv'
+const uri = process.env.DB_URI || '';
 
 export const connectDb = () => {
   mongoose.connect(uri)
