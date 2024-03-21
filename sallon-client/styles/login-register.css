@@ -1,0 +1,109 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-card {
+  display: flex;
+  max-width: 800px;
+  width: 100%;
+  background-color: #7c7c7c1f;
+  border-radius: 10px;
+  box-shadow: #2f2f2f 0px 0px 10px;
+}
+
+.picture-section {
+  flex: 1;
+  background-image: url("../assets/dawn-orange.jpg");
+  background-size: cover;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.login-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-content form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-content form label {
+  margin-bottom: 5px;
+}
+
+.login-content form input,
+.login-content form button {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.login-content .submit-btn {
+  border: none;
+  background-color: #ff5e00;
+  color: #fff;
+  cursor: pointer;
+}
+
+.login-content .submit-btn:hover {
+  background-color: #ff5100;
+}
+
+.login-content p {
+  margin-top: 20px;
+}
+
+.login-content p a {
+  color: #ff5900;
+  text-decoration: none;
+}
+
+.login-content p a:hover {
+  text-decoration: underline;
+}
+
+.logo-card {
+  height: 4em;
+  width: 4em; /* Add width property */
+  border-radius: 50%;
+}
+
+.login-card-text {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  padding-left: 1rem;
+}
+
+.logo-card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+#email,
+#password {
+  background-color: #ffffff15;
+  color: #ff5100;
+}
+
+.error-msg {
+  z-index: 50;
+  color: #ff0000;
+  font-size: 0.8em;
+}

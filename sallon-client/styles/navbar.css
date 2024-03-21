@@ -1,0 +1,81 @@
+.navbar {
+  background-color: #3333331f;
+  padding: 0.5rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.navbar-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-nav-items {
+  margin-left: 2rem;
+  display: flex;
+}
+
+.right-nav-items {
+  margin-right: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-item {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  margin: auto;
+  padding: 0 2rem 0 0;
+}
+
+.navbar-item:hover {
+  color: rgb(255, 0, 0);
+}
+
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown {
+  background-color: #333;
+  position: absolute;
+  margin-right: 4rem;
+  top: 100%;
+  right: 0;
+  list-style-type: none;
+  padding: 0.1rem 0;
+  border-radius: 0.5rem;
+  z-index: 50;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-item:hover {
+  background-color: #444;
+}
+
+.dropdown-link {
+  color: white;
+  text-decoration: none;
+}
+
+.logo-image {
+  height: 40px; /* Adjust the height as needed */
+  width: auto;
+  border-radius: 50%;
+  margin-right: 1rem; /* Add some margin to separate the logo from other navbar items */
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  margin: auto;
+}
