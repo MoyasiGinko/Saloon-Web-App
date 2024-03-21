@@ -4,12 +4,13 @@ import React, { useState, FormEvent } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import logoImage from "../../assets/logo.jpg"; // Import your logo image here
-import "../../styles/login-register.css"; // Import the CSS file for styling
+import logoImage from "../../assets/logo.jpg";
+import "../../styles/login-register.css"; 
 import Image from "next/image";
 
 const SignIn = () => {
   const router = useRouter();
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -46,16 +47,16 @@ const SignIn = () => {
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {
         if (
-          error.response.status === 401 &&
-          error.response.data.error === "Invalid Credentials"
+          error.response.data.error === 'Invalid Credintails'
         ) {
-          toast.error("Email or password is incorrect");
+          console.log('Credentials error')
+          setError("Email or password is incorrect");
         } else {
-          console.log("Error: ", error);
+          console.log("unknown Error: ", error);
           toast.error("An Error has occurred");
         }
       } else {
-        console.log("Error:", error);
+        console.log("Unhandled Error:", error);
         toast.error("An unKnown error occurred");
       }
     }
@@ -69,6 +70,9 @@ const SignIn = () => {
           <div className="logo-card-header">
             <Image src={logoImage} alt="Logo" className="logo-card" />
             <span className="login-card-text">Sign in</span>
+          </div>
+          <div className="flex justify-center mt-2 mb-2">
+            <span className="text-red-500">{error}</span>
           </div>
           <form onSubmit={handleSubmit}>
             <div>
