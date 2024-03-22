@@ -8,7 +8,7 @@ import Image from "next/image";
 const Navbar: React.FC = () => {
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const navItems = [{ label: "Products", url: "/products" }];
+  const navItems = [{ label: "Products", url: "/products"}, {label: "Upload", url: "/uploadprod"}];
 
   const accountItem = {
     label: "Account",
