@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import { User } from '../models/User';
 import { generateAccessToken, generateRefreshhToken } from '../Utils/jwtUtils';
 import { clearCookie } from '../Utils/clearCookie';
+import { prodUploadS} from '../services/productService';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -73,4 +74,8 @@ export const authenticate = (req: Request, res: Response) => {
 
 export const logout = (req: Request, res: Response) => {
   clearCookie(res, 'refreshToken');
+}
+
+export const prodUploadC= (req: Request, res: Response) => {
+  prodUploadS(res)
 }

@@ -1,5 +1,6 @@
 import express from 'express';
 import userRoutes  from './routes/userRoutes';
+import productRoutes from './routes/productRoutes';
 import loggerMiddleWare from './middlewares/loggerMiddleware';
 import { connectDb } from '../config/database';
 import cookieParser from 'cookie-parser';
@@ -19,6 +20,7 @@ connectDb();
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
 app.use('/api/users', userRoutes);
+app.use('/api/prod', productRoutes);
 
 
 process.on('uncaughtException', (err) => {
