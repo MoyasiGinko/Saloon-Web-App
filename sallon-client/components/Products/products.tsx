@@ -1,54 +1,50 @@
-import React from "react";
+'use client';
 
-const products = [
-  {
-    id: 1,
-    title: "Product 1",
-    price: 10,
-    image: "https://example.com/product1.jpg",
-  },
-  {
-    id: 2,
-    title: "Product 2",
-    price: 20,
-    image: "https://example.com/product2.jpg",
-  },
-  {
-    id: 3,
-    title: "Product 3",
-    price: 30,
-    image: "https://example.com/product3.jpg",
-  },
-  {
-    id: 4,
-    title: "Product 4",
-    price: 40,
-    image: "https://example.com/product4.jpg",
-  },
-  {
-    id: 5,
-    title: "Product 5",
-    price: 50,
-    image: "https://example.com/product5.jpg",
-  },
-];
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Image from "next/image";
 
-const Products: React.FC = () => {
+interface Products {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  quantity: number;
+  image: string;
+}
+
+export const ShowProducts = () => {
+
+  const [products, setProducts] = useState<Products[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await axios.get('http://localhost:3000/api/prod/showprod')
+      setProducts(response.data.products)
+    }
+    fetchProducts();
+  }, [])
+ 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {products.map((product) => (
-        <div key={product.id} className="bg-white rounded-lg shadow-md p-4">
-          <img
-            src={product.image}
-            alt={product.title}
-            className="w-full h-40 object-cover mb-4"
-          />
-          <h2 className="text-lg font-semibold">{product.title}</h2>
-          <p className="text-gray-500">${product.price}</p>
-        </div>
-      ))}
+    <div className="bg-white text-red-900">
+      <h1> Products </h1>
+      <div>
+        {products.map((product) => (
+          <div key={product.id}>
+            <h2 className="text-3xl">{product.name}</h2>
+            <p>Description: {product.description}</p>
+            <p>Prize: {product.price}</p>
+            <p>Quantiy: {product.quantity}</p>
+            <Image
+              src={`http://localhost:3000/${product.image}`}
+              alt="Description of Image"
+              width={500}
+              height={300}
+            />
+          </div>
+        ))}
+
+      </div>
     </div>
   );
-};
-
-export default Products;
+}
