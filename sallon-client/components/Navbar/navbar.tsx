@@ -1,22 +1,37 @@
 "use client";
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/navbar.css";
 import logoImage from "../../assets/logo.jpg";
 import Image from "next/image";
 
 const Navbar: React.FC = () => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
 
-  const navItems = [{ label: "Products", url: "/products"}, {label: "Upload", url: "/uploadprod"}];
+  useEffect(() => {
+    const storedToken = localStorage.getItem("accessToken");
+    if (storedToken) {
+      setAccessToken(storedToken);
+    }
+  }, []);
+
+  const navItems = [
+    { label: "Products", url: "/products" },
+    { label: "Upload", url: "/uploadprod" },
+  ];
 
   const accountItem = {
     label: "Account",
-    children: ["My Profile", "Sign In", "Sign Up"],
+    children: accessToken ? ["My Profile", "Logout"] : ["Sign In", "Sign Up"],
   };
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    setAccessToken(null);
   };
 
   return (
@@ -52,10 +67,16 @@ const Navbar: React.FC = () => {
                         ? "/signin"
                         : childLabel === "Sign Up"
                         ? "/signup"
-                        : "/profile"
+                        : childLabel === "My Profile"
+                        ? "/profile"
+                        : "#"
                     }
                     className="dropdown-link"
-                    onClick={() => setShowDropdown(false)}
+                    onClick={
+                      childLabel === "Logout"
+                        ? handleLogout
+                        : () => setShowDropdown(false)
+                    }
                   >
                     {childLabel}
                   </a>
