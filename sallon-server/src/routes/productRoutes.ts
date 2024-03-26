@@ -24,6 +24,6 @@ const filterFile = (req: Request, file: Express.Multer.File, cb: (error: Error |
 const upload = multer({storage: storage, fileFilter: filterFile})
 router.post('/upload', upload.single('image'), prodUploadC);
 router.get('/showprod', showProductC);
-router.put('/edit/:id', upload.single('image'), updateProductC)
+router.put('/edit/:id', upload.single('imgFile'), updateProductC)
 router.delete('/del/:id', deleteProductC)
 export default router;

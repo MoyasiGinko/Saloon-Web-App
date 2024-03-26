@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const Uploadprod = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ export const Uploadprod = () => {
           'Content-Type': 'multipart/form-data'
         }
       })
-      console.log("product uploaded successfully")
+      toast.success("product uploaded successfully")
     } catch (error) {
       console.error("Error While uplaoding", error);
     }

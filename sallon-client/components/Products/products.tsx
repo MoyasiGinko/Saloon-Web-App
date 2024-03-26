@@ -4,20 +4,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
 import { EditProduct } from "./editProduct";
-export interface Product {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  quantity: number;
-  image: File;
-}
+import { toast } from "react-toastify";
+import { Product } from "./interface";
 
 export const ShowProducts = () => {
-
   const [products, setProducts] = useState<Product[]>([]);
   const [editingProd, setEditingProd] = useState<Product | null>(null);
-
   const fetch = async () => {
     const response = await axios.get('http://localhost:3000/api/prod/showprod')
     setProducts(response.data.products)
@@ -34,22 +26,31 @@ export const ShowProducts = () => {
     setEditingProd(prod)
   }
 
-  const handleSave = () => {
+  const handleSave = (newProd: Product) => {
     fetch();
+    console.log('The new prod is', newProd)
+    console.log('The editing prod is', editingProd)
+    const isChanged = (newProd._id === editingProd?._id && newProd.name === editingProd?.name && newProd.description === editingProd?.description && newProd.price === editingProd?.price && newProd.quantity === editingProd?.quantity && newProd.image === editingProd?.image)
     setEditingProd(null);
+    if(!isChanged) {
+      toast.success('Product updated successfully')
+    }
   }
+
   const handleCancel = () => {
     setEditingProd(null);
   }
+
   const handleDelete = async (id: string) => {
-    console.log('I am in handleDelete');
     try {
       await axios.delete(`http://localhost:3000/api/prod/del/${id}`)
       fetch();
+      toast.success('Product deleted successfully');
     } catch (err) {
       console.error('Error deleting product', err);
     }
   }
+
   return (
     <div className="bg-white text-red-900 pl-10 pb-10">
       <h1 className="text-center"> Products </h1>

@@ -1,37 +1,37 @@
 
 import { useState } from "react";
 import axios from "axios";
-import { Product } from "./products";
-
+import { Product, EditedProduct } from "./interface";
 interface EditProductProps {
   product: Product;
-  onSave: () => void;
+  onSave: (product: EditedProduct) => void;
   onCancel: () => void;
 }
 
 export const EditProduct = ({ product, onSave, onCancel }: EditProductProps) => {
+
   const [editedProd, setEditedProd] = useState({
     _id: product._id,
     name: product.name,
     description: product.description,
     price: product.price,
     quantity: product.quantity,
-    image: product.image
+    imgPath: product.image,
+    imgFile: null as File | unknown 
   })
-
+  console.log('the edited Prod is ***', editedProd)
   const [error, setError] = useState('');
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('the eidted product is', editedProd)
     try {
-      await axios.put(`http://localhost:3000/api/prod/edit/${editedProd._id}`, editedProd, {
+      const response = await axios.put(`http://localhost:3000/api/prod/edit/${editedProd._id}`, editedProd, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
-      onSave();
+      onSave(response.data.product );
     } catch (err) {
-      console.log("Error updating product", err);
+      console.error("Error updating product", err);
     }
   }
 
@@ -40,12 +40,12 @@ export const EditProduct = ({ product, onSave, onCancel }: EditProductProps) => 
   }
 
   const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedImage = e.target.files?.[0] || editedProd.image;
+    const selectedImage = e.target.files?.[0]
     if (!selectedImage) {
       setError('Please choose a file')
       return;
     }
-    setEditedProd({ ...editedProd, image: selectedImage })
+    setEditedProd({ ...editedProd, imgFile: selectedImage })
   }
   return (
     <>
