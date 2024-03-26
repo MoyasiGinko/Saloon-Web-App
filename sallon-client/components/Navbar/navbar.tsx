@@ -1,19 +1,14 @@
 "use client";
-import React, { useState, useEffect } from "react";
+// Navbar.tsx
+import React, { useState } from "react";
+import { useAuth } from "../utils/AuthContext";
 import "../../styles/navbar.css";
 import logoImage from "../../assets/logo.jpg";
 import Image from "next/image";
 
 const Navbar: React.FC = () => {
+  const { accessToken, setAccessToken } = useAuth();
   const [showDropdown, setShowDropdown] = useState(false);
-  const [accessToken, setAccessToken] = useState<string | null>(null);
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem("accessToken");
-    if (storedToken) {
-      setAccessToken(storedToken);
-    }
-  }, []);
 
   const navItems = [
     { label: "Products", url: "/products" },
