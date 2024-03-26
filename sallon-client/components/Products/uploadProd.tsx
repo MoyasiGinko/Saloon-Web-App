@@ -12,7 +12,8 @@ export const Uploadprod = () => {
     image: null as File | unknown
   })
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3000/api/prod/upload', formData, {
         headers: {
@@ -30,7 +31,6 @@ export const Uploadprod = () => {
   }
   const handleImgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedImage = e.target.files?.[0];
-    console.log('The selected image is', selectedImage);
     setFormData({ ...formData, image: selectedImage });
   }
   return (

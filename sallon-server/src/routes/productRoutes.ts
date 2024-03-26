@@ -1,7 +1,8 @@
 import express, {Request} from "express";
 import { prodUploadC } from "../controllers/productController";
 import multer from "multer";
-import { showProductC } from "../controllers/productController";
+import { showProductC, updateProductC, deleteProductC  } from "../controllers/productController";
+
 
 const router = express.Router();
 const storage = multer.diskStorage({
@@ -23,4 +24,6 @@ const filterFile = (req: Request, file: Express.Multer.File, cb: (error: Error |
 const upload = multer({storage: storage, fileFilter: filterFile})
 router.post('/upload', upload.single('image'), prodUploadC);
 router.get('/showprod', showProductC);
+router.put('/edit/:id', upload.single('image'), updateProductC)
+router.delete('/del/:id', deleteProductC)
 export default router;
