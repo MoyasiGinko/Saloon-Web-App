@@ -2,12 +2,15 @@
 // Navbar.tsx
 import React, { useState } from "react";
 import { useAuth } from "../utils/AuthContext";
+import handleLogout from "../utils/AuthLogout"; // corrected import
+import { useRouter } from "next/navigation"; // Import useRouter hook
 import "../../styles/navbar.css";
 import logoImage from "../../assets/logo.jpg";
 import Image from "next/image";
 
 const Navbar: React.FC = () => {
   const { accessToken, setAccessToken } = useAuth();
+  const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false);
 
   const navItems = [
@@ -24,9 +27,8 @@ const Navbar: React.FC = () => {
     setShowDropdown(!showDropdown);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    setAccessToken(null);
+  const clickOnLogout = () => {
+    handleLogout(router); // corrected function call
   };
 
   return (
@@ -69,7 +71,7 @@ const Navbar: React.FC = () => {
                     className="dropdown-link"
                     onClick={
                       childLabel === "Logout"
-                        ? handleLogout
+                        ? clickOnLogout // corrected function reference
                         : () => setShowDropdown(false)
                     }
                   >

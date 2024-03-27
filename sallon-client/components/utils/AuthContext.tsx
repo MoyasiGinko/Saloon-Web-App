@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 
 interface AuthContextType {
   accessToken: string | null;
-  setAccessToken: React.Dispatch<React.SetStateAction<string | null>>;
+  setAccessToken: (newToken: string | null) => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -18,13 +18,39 @@ export const useAuth = () => {
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [accessToken, setAccessTokenState] = useState<string | null>(() => {
+    // Initialize accessToken from localStorage or null if not found
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("accessToken");
+    } else {
+      return null;
+    }
+  });
+
+  const setAccessToken: AuthContextType["setAccessToken"] = (newToken) => {
+    // Update accessToken state and save it to localStorage
+    setAccessTokenState(newToken);
+    if (typeof window !== "undefined") {
+      if (newToken) {
+        localStorage.setItem("accessToken", newToken);
+      } else {
+        localStorage.removeItem("accessToken");
+      }
+    }
+  };
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("accessToken");
-    if (storedToken) {
-      setAccessToken(storedToken);
-    }
+    // Update accessToken state if localStorage changes
+    const handleStorageChange = () => {
+      if (typeof window !== "undefined") {
+        const storedToken = localStorage.getItem("accessToken");
+        setAccessTokenState(storedToken);
+      }
+    };
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
   }, []);
 
   return (

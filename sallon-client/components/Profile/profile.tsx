@@ -1,12 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Protected } from "../utils/protectRoutes";
-import { useRouter } from "next/navigation";
-import axios from "axios";
-import { toast } from "react-toastify";
+import { useRouter } from "next/navigation"; // Import useRouter hook
+import handleLogout from "../utils/AuthLogout"; // Import handleLogout function
 
 const Profile = () => {
-  const router = useRouter();
   const isAuthenticated = Protected();
   const [userInfo, setUserInfo] = useState({
     name: "",
@@ -22,33 +20,17 @@ const Profile = () => {
     });
   }, []);
 
-  const handleLogout = async () => {
-    const accessToken = localStorage.getItem("accessToken") as string;
-    if (!accessToken) {
-      router.push("/");
-      return;
-    }
-
-    const parsedAccessToken = JSON.parse(accessToken);
-    const headers = { Authorization: `Bearer ${parsedAccessToken}` };
-
-    try {
-      await axios.post("http://localhost:3000/api/users/logout", null, {
-        headers,
-        withCredentials: true,
-      });
-      localStorage.clear(); // Clear all items in localStorage
-      toast.success("Logout successful");
-      router.push("/");
-    } catch (error) {
-      console.error("Logout error:", error);
-      toast.error("An error occurred during logout");
-    }
-  };
+  // Get the router object using useRouter hook
+  const router = useRouter();
 
   if (!isAuthenticated) {
     return <p>Loading....</p>;
   }
+
+  const handleLogoutClick = () => {
+    // Pass the router object as an argument to handleLogout function
+    handleLogout(router);
+  };
 
   return (
     <>
@@ -58,7 +40,11 @@ const Profile = () => {
         <p>Email: {userInfo.email}</p>
       </div>
       <div className="flex justify-center mt-4">
-        <button type="button" className="p-3 bg-red-600" onClick={handleLogout}>
+        <button
+          type="button"
+          className="p-3 bg-red-600"
+          onClick={handleLogoutClick}
+        >
           Logout
         </button>
       </div>
