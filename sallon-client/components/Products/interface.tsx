@@ -13,6 +13,6 @@ export interface EditedProduct {
   description: string;
   price: number;
   quantity: number;
-  imgPath: string
-  imgFile: File
+  imgPath: string;
+  imgFile: File;
 }

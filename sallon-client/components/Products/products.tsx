@@ -1,55 +1,61 @@
-'use client';
+"use client";
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
 import { EditProduct } from "./editProduct";
 import { toast } from "react-toastify";
-import { Product } from "./interface";
+import { EditedProduct, Product } from "./interface";
 
 export const ShowProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [editingProd, setEditingProd] = useState<Product | null>(null);
   const fetch = async () => {
-    const response = await axios.get('http://localhost:3000/api/prod/showprod')
-    setProducts(response.data.products)
-  }
+    const response = await axios.get("http://localhost:3000/api/prod/showprod");
+    setProducts(response.data.products);
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
       fetch();
-    }
+    };
     fetchProducts();
-  }, [])
+  }, []);
 
   const handleEdit = (prod: Product) => {
-    setEditingProd(prod)
-  }
+    setEditingProd(prod);
+  };
 
-  const handleSave = (newProd: Product) => {
+  const handleSave = (newProd: EditedProduct) => {
     fetch();
-    console.log('The new prod is', newProd)
-    console.log('The editing prod is', editingProd)
-    const isChanged = (newProd._id === editingProd?._id && newProd.name === editingProd?.name && newProd.description === editingProd?.description && newProd.price === editingProd?.price && newProd.quantity === editingProd?.quantity && newProd.image === editingProd?.image)
+    console.log("The new prod is", newProd);
+    console.log("The editing prod is", editingProd);
+    const isChanged =
+      newProd._id === editingProd?._id &&
+      newProd.name === editingProd?.name &&
+      newProd.description === editingProd?.description &&
+      newProd.price === editingProd?.price &&
+      newProd.quantity === editingProd?.quantity &&
+      newProd.imgPath === editingProd?.image;
     setEditingProd(null);
-    if(!isChanged) {
-      toast.success('Product updated successfully')
+    if (!isChanged) {
+      toast.success("Product updated successfully");
     }
-  }
+  };
 
   const handleCancel = () => {
     setEditingProd(null);
-  }
+  };
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:3000/api/prod/del/${id}`)
+      await axios.delete(`http://localhost:3000/api/prod/del/${id}`);
       fetch();
-      toast.success('Product deleted successfully');
+      toast.success("Product deleted successfully");
     } catch (err) {
-      console.error('Error deleting product', err);
+      console.error("Error deleting product", err);
     }
-  }
+  };
 
   return (
     <div className="bg-white text-red-900 pl-10 pb-10">
@@ -77,15 +83,30 @@ export const ShowProducts = () => {
                   height={200}
                 />
                 <div className="text-white flex gap-2">
-                  <button className="bg-blue-500 px-4 py-1" onClick={() => { handleEdit(product) }}> Edit</button>
-                  <button className="bg-red-400 px-4 py-1" onClick={() => { handleDelete(product._id) }}> Delete </button>
+                  <button
+                    className="bg-blue-500 px-4 py-1"
+                    onClick={() => {
+                      handleEdit(product);
+                    }}
+                  >
+                    {" "}
+                    Edit
+                  </button>
+                  <button
+                    className="bg-red-400 px-4 py-1"
+                    onClick={() => {
+                      handleDelete(product._id);
+                    }}
+                  >
+                    {" "}
+                    Delete{" "}
+                  </button>
                 </div>
               </>
-            )
-            }
+            )}
           </div>
         ))}
       </div>
     </div>
   );
-}
+};
