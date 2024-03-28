@@ -5,7 +5,7 @@ import axios from "axios";
 import Image from "next/image";
 import { EditProduct } from "./editProduct";
 import { toast } from "react-toastify";
-import { EditedProduct, Product } from "./interface";
+import { Product } from "./interface";
 
 export const ShowProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -26,7 +26,7 @@ export const ShowProducts = () => {
     setEditingProd(prod);
   };
 
-  const handleSave = (newProd: EditedProduct) => {
+  const handleSave = (newProd: Product) => {
     fetch();
     console.log("The new prod is", newProd);
     console.log("The editing prod is", editingProd);
@@ -36,7 +36,7 @@ export const ShowProducts = () => {
       newProd.description === editingProd?.description &&
       newProd.price === editingProd?.price &&
       newProd.quantity === editingProd?.quantity &&
-      newProd.imgPath === editingProd?.image;
+      newProd.image === editingProd?.image;
     setEditingProd(null);
     if (!isChanged) {
       toast.success("Product updated successfully");

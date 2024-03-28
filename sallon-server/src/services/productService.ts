@@ -48,7 +48,11 @@ export const updateProductS = async (req: Request, res: Response) => {
     await product.save();
     if (oldImgPath) {
       const editedImagePath = path.join(__dirname, '..', '..', oldImgPath);
-      fs.unlinkSync(editedImagePath);
+      if (fs.existsSync(editedImagePath)) {
+        fs.unlinkSync(editedImagePath);
+      } else {
+        console.log('Could not find the file')
+      }
     }
     res.status(200).json({ message: 'Product updated successfully', product: product });
   } catch (error) {

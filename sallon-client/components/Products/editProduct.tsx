@@ -1,10 +1,10 @@
 
 import { useState } from "react";
 import axios from "axios";
-import { Product, EditedProduct } from "./interface";
+import { Product } from "./interface";
 interface EditProductProps {
   product: Product;
-  onSave: (product: EditedProduct) => void;
+  onSave: (product: Product) => void;
   onCancel: () => void;
 }
 
