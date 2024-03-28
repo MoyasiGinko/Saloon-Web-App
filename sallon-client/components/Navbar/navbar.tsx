@@ -1,6 +1,6 @@
 "use client";
-
 import React, { useState } from "react";
+import DropdownMenu from "./DropdownMenu";
 import "../../styles/navbar.css";
 import logoImage from "../../assets/logo.jpg";
 import Image from "next/image";
@@ -8,15 +8,16 @@ import Image from "next/image";
 const Navbar: React.FC = () => {
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const navItems = [{ label: "Products", url: "/products" }];
-
-  const accountItem = {
-    label: "Account",
-    children: ["My Profile", "Sign In", "Sign Up"],
-  };
-
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
+  };
+
+  const clickOnAccount = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+  const handleLogoutClick = () => {
+    setShowDropdown(false); // Close the dropdown when logout is clicked
   };
 
   return (
@@ -29,40 +30,23 @@ const Navbar: React.FC = () => {
           </a>
         </div>
         <div className="right-nav-items">
-          {navItems.map((item) => (
-            <a href={item.url} key={item.label} className="navbar-item">
-              {item.label}
-            </a>
-          ))}
+          {/* Other menu items */}
+          <a href="/products" className="navbar-item">
+            Products
+          </a>
+          <a href="/uploadprod" className="navbar-item">
+            Upload
+          </a>
+          {/* Account dropdown */}
           <a
             href="#"
             className="navbar-item"
-            aria-haspopup={accountItem.children ? "true" : "false"}
-            onClick={toggleDropdown}
+            aria-haspopup="true"
+            onClick={clickOnAccount}
           >
-            {accountItem.label}
+            Account
           </a>
-          {accountItem.children && showDropdown && (
-            <ul className="dropdown">
-              {accountItem.children.map((childLabel) => (
-                <li key={childLabel} className="dropdown-item">
-                  <a
-                    href={
-                      childLabel === "Sign In"
-                        ? "/signin"
-                        : childLabel === "Sign Up"
-                        ? "/signup"
-                        : "/profile"
-                    }
-                    className="dropdown-link"
-                    onClick={() => setShowDropdown(false)}
-                  >
-                    {childLabel}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
+          {showDropdown && <DropdownMenu onLogoutClick={handleLogoutClick} />}
         </div>
       </div>
     </nav>
