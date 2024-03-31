@@ -62,7 +62,7 @@ export const Uploadprod = () => {
   return (
     <>
       <div className="text-center mt-[9rem]">
-        <h1>Let's upload some product</h1>
+        <h1>Lets upload some product</h1>
       </div>
 
       <form className=" ">
