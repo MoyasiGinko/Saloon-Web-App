@@ -4,6 +4,7 @@ import {
   showCategoryS,
   updateCategoryS,
   deleteCategoryS,
+  findCategoryS,
 } from "../services/categoryService";
 
 export const createCategoryC = (req: Request, res: Response) => {
@@ -20,4 +21,8 @@ export const updateCategoryC = (req: Request, res: Response) => {
 
 export const deleteCategoryC = (req: Request, res: Response) => {
   deleteCategoryS(req, res);
+};
+
+export const findCategoryC = (req: Request, res: Response) => {
+  return findCategoryS(req, res);
 };
