@@ -1,10 +1,10 @@
-import mangoose from "mongoose";
+import mongoose from "mongoose";
 
-const categoryShema = new mangoose.Schema({
+const categoryShema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
   },
 });
 
-export const Category = mangoose.model("Category", categoryShema);
+export const Category = mongoose.model("Category", categoryShema);

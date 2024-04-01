@@ -10,7 +10,7 @@ export const Uploadprod = () => {
     price: "",
     quantity: "",
     image: null as File | unknown,
-    category: "", // Add category field
+    category: "", 
   });
   const [categories, setCategories] = useState<{ _id: string; name: string }[]>(
     []
@@ -31,7 +31,9 @@ export const Uploadprod = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('the form data from handlesubmit is', formData.category, "type**", typeof formData.category)
     try {
+      console.log('the form data from handlesubmit is************', formData)
       const response = await axios.post(
         "http://localhost:3000/api/prod/upload",
         formData,
