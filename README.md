@@ -35,7 +35,33 @@ Each task represents an API that needs to be implemented to support the salon's 
 To get started with the development of the salon web application, follow these steps:
 
 1. Clone this repository to your local machine.
+
+```bash
+git clone https://github.com/MoyasiGinko/Saloon-Web-App.git
+```
+
 2. Set up the development environment by installing necessary dependencies.
+
+```bash
+cd Saloon-Web-App
+```
+
+To install the dependencies for the backend:
+
+```bash
+cd sallon-server
+npm install
+npm run start
+```
+
+To install the dependencies for the frontend:
+
+```bash
+cd sallon-client
+npm install
+npm run dev
+```
+
 3. Begin working on the frontend and backend tasks as per the requirements outlined above.
 
 ## Contributing
