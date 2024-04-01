@@ -5,7 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import logoImage from "../../assets/logo.jpg";
-import "../../styles/login-register.css"; 
+import "../../styles/login-register.css";
 import Image from "next/image";
 
 const SignIn = () => {
@@ -24,7 +24,7 @@ const SignIn = () => {
     e.preventDefault();
     try {
       const req = await axios.post(
-        "http://localhost:3000/api/users/login",
+        "http://localhost:3000/api/users/login", //TODO: use env variable
         formData
       );
       if (req.status === 200) {
@@ -46,10 +46,8 @@ const SignIn = () => {
       }
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response) {
-        if (
-          error.response.data.error === 'Invalid Credintails'
-        ) {
-          console.log('Credentials error')
+        if (error.response.data.error === "Invalid Credintails") {
+          console.log("Credentials error");
           setError("Email or password is incorrect");
         } else {
           console.log("unknown Error: ", error);

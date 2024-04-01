@@ -11,6 +11,7 @@ const handleLogout = async (router: any) => {
   const parsedAccessToken = JSON.parse(accessToken);
   const headers = { Authorization: `Bearer ${parsedAccessToken}` };
 
+  // TODO: use env variable
   try {
     await axios.post("http://localhost:3000/api/users/logout", null, {
       headers,
