@@ -13,8 +13,8 @@ const Profile = () => {
   });
 
   useEffect(() => {
-    const storedName = localStorage.getItem("name") ?? "";
-    const storedEmail = localStorage.getItem("email") ?? "";
+    const storedName = localStorage.getItem("name")?.replace(/"/g, "") ?? ""; // Remove quotation marks from name
+    const storedEmail = localStorage.getItem("email")?.replace(/"/g, "") ?? ""; // Remove quotation marks from email
     setUserInfo({
       name: storedName,
       email: storedEmail,
@@ -36,10 +36,10 @@ const Profile = () => {
   return (
     <div className={styles.profileContainer}>
       <div className={styles.profileCard}>
-        <h1 className="text-center mb-4">Profile</h1>
+        {/* <h1 className={styles.profileTitle}>My Profile</h1> */}
         <div className={styles.profileInfo}>
-          <p>Name: {userInfo.name}</p>
-          <p>Email: {userInfo.email}</p>
+          <p className={styles.name}>Name: {userInfo.name}</p>
+          <p className={styles.email}>Email: {userInfo.email}</p>
         </div>
         <div className={styles.logoutButton}>
           <button type="button" onClick={handleLogoutClick}>

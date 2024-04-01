@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import styles from "../../styles/uploadprod.module.css";
+import styles from "../../styles/uploadProduct.module.css";
 
 export const Uploadprod = () => {
   const [formData, setFormData] = useState({

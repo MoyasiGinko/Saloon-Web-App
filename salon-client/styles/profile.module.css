@@ -5,11 +5,17 @@
 }
 
 .profileCard {
-  background-color: #fff;
+  background-color: #ffffff4c;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
+
+/* .profileTitle {
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+} */
 
 .profileInfo {
   display: flex;
@@ -18,10 +24,33 @@
   gap: 15px;
 }
 
-.profileInfo p {
+.name {
+  padding: 8px;
+  font-size: 24px;
+  color: #ffffff;
+  background-color: rgba(122, 0, 0, 0.47);
+  border-radius: 10px;
+}
+
+.email {
+  padding: 8px;
+  font-size: 18px;
+  color: #ffffff;
+  background-color: #a44b458e;
+  border-radius: 10px;
+}
+
+.name:hover,
+.email:hover {
+  background-color: #7a0000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* .profileInfo p {
   font-size: 18px;
   color: #333;
-}
+} */
 
 .logoutButton {
   margin-top: 20px;

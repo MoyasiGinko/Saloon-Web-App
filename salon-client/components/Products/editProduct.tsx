@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Product } from "./interface";
-import styles from "../../styles/editproduct.module.css";
+import styles from "../../styles/editProduct.module.css";
 interface EditProductProps {
   product: Product;
   onSave: (product: Product) => void;

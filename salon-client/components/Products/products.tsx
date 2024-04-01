@@ -6,7 +6,7 @@ import { EditProduct } from "./editProduct";
 import { toast } from "react-toastify";
 import { Product } from "./interface";
 import { fetchCategories } from "./category";
-import styles from "../../styles/products.module.css";
+import styles from "../../styles/showProduct.module.css";
 
 export const ShowProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
