@@ -24,10 +24,11 @@ const productShema = new mongoose.Schema({
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
-    default: {
-      name: "Uncategorized",
-    },
+    default: new mongoose.Types.ObjectId('660a79ef93737e026d58ab09')
   },
+  
 });
 
+
 export const Product = mongoose.model("Product", productShema);
+

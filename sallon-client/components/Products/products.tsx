@@ -34,18 +34,20 @@ export const ShowProducts = () => {
     setEditingProd(prod);
   };
 
-  const handleSave = async (newProd: Product) => {
-    try {
-      await axios.put(`http://localhost:3000/api/prod/${newProd._id}`, newProd);
-      const updatedProducts = products.map((product) =>
-        product._id === newProd._id ? newProd : product
-      );
-      setProducts(updatedProducts);
-      setEditingProd(null);
+  const handleSave = (newProd: Product) => {
+    fetchData();
+    console.log("The new prod is", newProd);
+    console.log("The editing prod is", editingProd);
+    const isChanged =
+      newProd._id === editingProd?._id &&
+      newProd.name === editingProd?.name &&
+      newProd.description === editingProd?.description &&
+      newProd.price === editingProd?.price &&
+      newProd.quantity === editingProd?.quantity &&
+      newProd.image === editingProd?.image;
+    setEditingProd(null);
+    if (!isChanged) {
       toast.success("Product updated successfully");
-    } catch (error) {
-      console.error("Error updating product", error);
-      toast.error("Failed to update product");
     }
   };
 

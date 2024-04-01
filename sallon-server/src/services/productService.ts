@@ -11,16 +11,16 @@ export const prodUploadS = async (req: Request, res: Response) => {
     );
     const { product, description, quantity, price, category } = req.body;
 
-    // Assuming category is the ID of the category
     const newProduct = new Product({
       name: product,
       description: description,
       price: price,
       quantity: quantity,
       image: imagePath,
-      category: category, // Assigning the category ID
+      ...(category !== '' ? { category: category } : {}),
     });
 
+    console.log("the new product is ******", newProduct, typeof newProduct);
     await newProduct.save();
     return res.status(200).json({ message: "Product uploaded successfully" });
   } catch (error) {
