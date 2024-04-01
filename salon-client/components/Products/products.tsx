@@ -6,6 +6,7 @@ import { EditProduct } from "./editProduct";
 import { toast } from "react-toastify";
 import { Product } from "./interface";
 import { fetchCategories } from "./category";
+import styles from "../../styles/products.module.css";
 
 export const ShowProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -68,11 +69,11 @@ export const ShowProducts = () => {
   };
 
   return (
-    <div className="bg-white text-red-900 pl-10 pb-10">
-      <h1 className="text-center">Products</h1>
-      <div>
+    <div className={styles.productsContainer}>
+      {/* <h1 className={styles.heading}>Products</h1> */}
+      <div className={styles.productGrid}>
         {products.map((product) => (
-          <div key={product._id}>
+          <div key={product._id} className={styles.productCard}>
             {editingProd && editingProd._id === product._id ? (
               <EditProduct
                 key={product._id}
@@ -82,27 +83,33 @@ export const ShowProducts = () => {
               />
             ) : (
               <>
-                <h2 className="text-3xl">{product.name}</h2>
-                <p>Description: {product.description}</p>
-                <p>Price: {product.price}</p>
-                <p>Quantity: {product.quantity}</p>
-                <p>Category: {categories[product.category]}</p>{" "}
-                {/* Map category ID to name */}
                 <Image
-                  src={`http://localhost:3000/${product.image}`} //TODO: use env variable
+                  src={`http://localhost:3000/${product.image}`}
                   alt="Description of Image"
-                  width={400}
-                  height={200}
+                  height={300}
+                  width={300}
+                  className={styles.productImage}
                 />
-                <div className="text-white flex gap-2">
+                <h2 className={styles.productName}>{product.name}</h2>
+                <p className={styles.productDescription}>
+                  Description: {product.description}
+                </p>
+                <p className={styles.productInfo}>Price: {product.price}</p>
+                <p className={styles.productInfo}>
+                  Quantity: {product.quantity}
+                </p>
+                <p className={styles.productInfo}>
+                  Category: {categories[product.category]}
+                </p>
+                <div className={styles.buttonGroup}>
                   <button
-                    className="bg-blue-500 px-4 py-1"
+                    className={styles.editButton}
                     onClick={() => handleEdit(product)}
                   >
                     Edit
                   </button>
                   <button
-                    className="bg-red-400 px-4 py-1"
+                    className={styles.deleteButton}
                     onClick={() => handleDelete(product._id)}
                   >
                     Delete
