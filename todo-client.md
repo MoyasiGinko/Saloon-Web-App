@@ -9,7 +9,7 @@ The front end designs should have two separate home index pages.
 
 The saloon webapp has sevaral functionalities. If we look at the website from the client-view perspective, a general user can visit the website, explore all the services and products. If the user wants to get the benefits of the services and other features, a user needs to sign in with a simple authorization.
 
-Let's take a look at the few requirements below:
+Let's take a look at the few requirements below [✓⨯]:
 
 For an `Un-authorized` user
 
@@ -44,7 +44,7 @@ For an `Authorized` user
 
 The saloon webapp is a dynamic website with many modern technologies included. This website serves as a full capabilities to work for both admin side moderations and the client side consumer experience. Always updated with your business to meet your all needs.
 
-Let's take a look at the few requirements below:
+Let's take a look at the few requirements below [✓⨯]:
 
 For an `admin` role user
 
