@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Protected } from "../utils/protectRoutes";
 import { useRouter } from "next/navigation"; // Import useRouter hook
 import handleLogout from "../utils/AuthLogout"; // Import handleLogout function
+import styles from "../../styles/profile.module.css";
 
 const Profile = () => {
   const isAuthenticated = Protected();
@@ -33,22 +34,20 @@ const Profile = () => {
   };
 
   return (
-    <>
-      <h1 className="text-center p-3">Profile</h1>
-      <div className="flex flex-col items-center mt-20 gap-2 ">
-        <p>Name: {userInfo.name}</p>
-        <p>Email: {userInfo.email}</p>
+    <div className={styles.profileContainer}>
+      <div className={styles.profileCard}>
+        <h1 className="text-center mb-4">Profile</h1>
+        <div className={styles.profileInfo}>
+          <p>Name: {userInfo.name}</p>
+          <p>Email: {userInfo.email}</p>
+        </div>
+        <div className={styles.logoutButton}>
+          <button type="button" onClick={handleLogoutClick}>
+            Logout
+          </button>
+        </div>
       </div>
-      <div className="flex justify-center mt-4">
-        <button
-          type="button"
-          className="p-3 bg-red-600"
-          onClick={handleLogoutClick}
-        >
-          Logout
-        </button>
-      </div>
-    </>
+    </div>
   );
 };
 

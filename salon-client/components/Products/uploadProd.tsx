@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import styles from "../../styles/uploadprod.module.css";
 
 export const Uploadprod = () => {
   const [formData, setFormData] = useState({
@@ -68,14 +69,14 @@ export const Uploadprod = () => {
 
   return (
     <>
-      <div className="text-center mt-[9rem]">
+      <div className={styles.uploadForm}>
         <h1>Lets upload some product</h1>
       </div>
 
-      <form className=" ">
-        <div className="flex flex-col gap-2 w-[250px] mx-auto">
+      <form className={styles.formContainer}>
+        <div className="flex flex-col gap-2">
           <input
-            className="text-red-900"
+            className={styles.inputField}
             type="text"
             name="product"
             placeholder="Product"
@@ -83,7 +84,7 @@ export const Uploadprod = () => {
             onChange={handleChange}
           />
           <input
-            className="text-red-900"
+            className={styles.inputField}
             type="text"
             name="description"
             placeholder="Description"
@@ -91,7 +92,7 @@ export const Uploadprod = () => {
             onChange={handleChange}
           />
           <input
-            className="text-red-900"
+            className={styles.inputField}
             type="number"
             name="price"
             placeholder="Price"
@@ -99,7 +100,7 @@ export const Uploadprod = () => {
             onChange={handleChange}
           />
           <input
-            className="text-red-900"
+            className={styles.inputField}
             type="number"
             name="quantity"
             placeholder="Quantity"
@@ -107,7 +108,7 @@ export const Uploadprod = () => {
             onChange={handleChange}
           />
           <input
-            className="text-red-900"
+            className={styles.fileInput}
             type="file"
             name="image"
             placeholder="image"
@@ -117,7 +118,7 @@ export const Uploadprod = () => {
 
           {/* Select input for category */}
           <select
-            className="text-red-900"
+            className={styles.selectField}
             name="category"
             value={formData.category}
             onChange={handleChange}
@@ -133,7 +134,7 @@ export const Uploadprod = () => {
           <button
             type="submit"
             onClick={handleSubmit}
-            className="bg-red-900 text-white"
+            className={styles.submitButton}
           >
             Submit
           </button>

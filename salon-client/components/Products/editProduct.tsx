@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Product } from "./interface";
+import styles from "../../styles/editproduct.module.css";
 interface EditProductProps {
   product: Product;
   onSave: (product: Product) => void;
@@ -77,22 +78,21 @@ export const EditProduct = ({
   };
   return (
     <>
-      <form
-        onSubmit={handleSubmit}
-        className="py-5 flex flex-col gap-2 w-[250px] items-start"
-      >
-        <span className="text-red-500">{error}</span>
+      <form onSubmit={handleSubmit} className={styles.formContainer}>
+        <span className={styles.errorMessage}>{error}</span>
         <input
           type="text"
           name="name"
           value={editedProd.name}
           placeholder="Product"
+          className={styles.inputField}
           onChange={handleChange}
         />
         <input
           name="description"
           value={editedProd.description}
           placeholder="Description"
+          className={styles.inputField}
           onChange={handleChange}
         />
         <input
@@ -100,6 +100,7 @@ export const EditProduct = ({
           name="price"
           value={editedProd.price}
           placeholder="Price"
+          className={styles.inputField}
           onChange={handleChange}
         />
         <input
@@ -107,20 +108,22 @@ export const EditProduct = ({
           name="quantity"
           value={editedProd.quantity}
           placeholder="Quantity"
+          className={styles.inputField}
           onChange={handleChange}
         />
         <input
           type="file"
           name="image"
           placeholder="Image"
+          className={styles.fileInput}
           onChange={handleChangeImg}
         />
         {/* Select input for category */}
         <select
-          className="text-red-900"
           name="category"
           value={editedProd.category}
           onChange={handleChange}
+          className={styles.selectField}
         >
           <option value="">Select Category</option>
           {categories.map((category) => (
@@ -129,12 +132,12 @@ export const EditProduct = ({
             </option>
           ))}
         </select>
-        <div className="flex gap-2">
-          <button className="bg-blue-300 py-1 px-3" type="submit">
+        <div className={styles.buttonGroup}>
+          <button className={styles.saveButton} type="submit">
             Save
           </button>
           <button
-            className="bg-red-300 py-1 px-3"
+            className={styles.cancelButton}
             type="button"
             onClick={onCancel}
           >

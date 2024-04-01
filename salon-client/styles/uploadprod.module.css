@@ -1,0 +1,55 @@
+.uploadForm {
+  text-align: center;
+  margin-top: 9rem;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.inputField,
+.selectField {
+  color: #000;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.inputField:focus,
+.selectField:focus {
+  border-color: #ff0000;
+}
+
+.selectField {
+  cursor: pointer;
+}
+
+.fileInput {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff0000;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #cc0000;
+}
