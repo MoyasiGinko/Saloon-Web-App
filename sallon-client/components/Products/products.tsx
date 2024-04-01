@@ -15,7 +15,7 @@ export const ShowProducts = () => {
   const fetchData = async () => {
     try {
       const productsResponse = await axios.get(
-        "http://localhost:3000/api/prod/showprod"
+        "http://localhost:3000/api/prod/showprod" //TODO: use env variable
       );
       setProducts(productsResponse.data.products);
 
@@ -57,7 +57,7 @@ export const ShowProducts = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:3000/api/prod/del/${id}`);
+      await axios.delete(`http://localhost:3000/api/prod/del/${id}`); //TODO: use env variable
       const updatedProducts = products.filter((product) => product._id !== id);
       setProducts(updatedProducts);
       toast.success("Product deleted successfully");
@@ -89,7 +89,7 @@ export const ShowProducts = () => {
                 <p>Category: {categories[product.category]}</p>{" "}
                 {/* Map category ID to name */}
                 <Image
-                  src={`http://localhost:3000/${product.image}`}
+                  src={`http://localhost:3000/${product.image}`} //TODO: use env variable
                   alt="Description of Image"
                   width={400}
                   height={200}

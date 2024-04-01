@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 
 export const Protected = () => {
-  const route = "http://localhost:3000/api/users/authenticate";
+  const route = "http://localhost:3000/api/users/authenticate"; //TODO: use env variable
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 

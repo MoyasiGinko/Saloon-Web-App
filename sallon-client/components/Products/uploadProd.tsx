@@ -10,7 +10,7 @@ export const Uploadprod = () => {
     price: "",
     quantity: "",
     image: null as File | unknown,
-    category: "", 
+    category: "",
   });
   const [categories, setCategories] = useState<{ _id: string; name: string }[]>(
     []
@@ -19,7 +19,7 @@ export const Uploadprod = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/prod/show");
+        const response = await axios.get("http://localhost:3000/api/prod/show"); //TODO: use env variable
         setCategories(response.data.categories);
       } catch (error) {
         console.error("Error fetching categories", error);
@@ -31,11 +31,16 @@ export const Uploadprod = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('the form data from handlesubmit is', formData.category, "type**", typeof formData.category)
+    console.log(
+      "the form data from handlesubmit is",
+      formData.category,
+      "type**",
+      typeof formData.category
+    );
     try {
-      console.log('the form data from handlesubmit is************', formData)
+      console.log("the form data from handlesubmit is************", formData);
       const response = await axios.post(
-        "http://localhost:3000/api/prod/upload",
+        "http://localhost:3000/api/prod/upload", //TODO: use env variable
         formData,
         {
           headers: {

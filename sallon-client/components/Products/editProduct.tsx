@@ -30,7 +30,7 @@ export const EditProduct = ({
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/prod/show");
+        const response = await axios.get("http://localhost:3000/api/prod/show"); //TODO: use env variable
         setCategories(response.data.categories);
       } catch (error) {
         console.error("Error fetching categories", error);
@@ -44,7 +44,7 @@ export const EditProduct = ({
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:3000/api/prod/edit/${editedProd._id}`,
+        `http://localhost:3000/api/prod/edit/${editedProd._id}`, //TODO: use env variable
         editedProd,
         {
           headers: {
@@ -58,10 +58,6 @@ export const EditProduct = ({
     }
   };
 
-  //     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  // ) => {
-  //   const { name, value } = e.target;
-  //   setFormData({ ...formData, [name]: value });
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement

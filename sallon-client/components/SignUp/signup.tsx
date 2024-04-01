@@ -4,7 +4,7 @@ import React, { FormEvent, useState } from "react";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import logoImage from "../../assets/logo.jpg"; 
+import logoImage from "../../assets/logo.jpg";
 import "../../styles/login-register.css";
 import Image from "next/image";
 
@@ -41,7 +41,7 @@ const SignUp = () => {
 
     try {
       const req: AxiosResponse<any> = await axios.post(
-        "http://localhost:3000/api/users/register",
+        "http://localhost:3000/api/users/register", //TODO: use env variable
         formData
       );
       if (req.status === 201) {
