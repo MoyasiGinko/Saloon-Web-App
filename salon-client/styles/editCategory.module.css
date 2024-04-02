@@ -1,0 +1,58 @@
+/* editCategory.module.css */
+
+.editCategory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.heading {
+  text-align: center;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.errorMessage {
+  color: #ff0000;
+}
+
+.editCategoryInput {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  color: #ff0000;
+}
+
+.editCategoryInput:focus {
+  border-color: #ff0000;
+}
+
+.button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.saveButton {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.cancelButton {
+  background-color: #ff0000;
+  color: #ffffff;
+}
+
+.button:hover {
+  filter: brightness(0.9);
+}

@@ -17,7 +17,7 @@ export const prodUploadS = async (req: Request, res: Response) => {
       price: price,
       quantity: quantity,
       image: imagePath,
-      ...(category !== '' ? { category: category } : {}),
+      ...(category !== "" ? { category: category } : {}),
     });
 
     console.log("the new product is ******", newProduct, typeof newProduct);
@@ -54,8 +54,8 @@ export const updateProductS = async (req: Request, res: Response) => {
       imagePath = imgPath;
     }
 
-    // Check if category is being updated
-    if (category !== product.category.toString()) {
+    // Check if category is provided and not null or undefined
+    if (category !== null && category !== undefined) {
       // If category is being updated, update the product's category
       product.category = category;
     }

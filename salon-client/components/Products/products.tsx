@@ -99,7 +99,10 @@ export const ShowProducts = () => {
                   Quantity: {product.quantity}
                 </p>
                 <p className={styles.productInfo}>
-                  Category: {categories[product.category]}
+                  Category:{" "}
+                  {product.category
+                    ? categories[product.category]
+                    : "Uncategorized"}
                 </p>
                 <div className={styles.buttonGroup}>
                   <button

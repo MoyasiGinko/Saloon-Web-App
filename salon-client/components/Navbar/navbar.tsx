@@ -37,6 +37,9 @@ const Navbar: React.FC = () => {
           <a href="/uploadprod" className="navbar-item">
             Upload
           </a>
+          <a href="/category" className="navbar-item">
+            Category
+          </a>
           {/* Account dropdown */}
           <a
             href="#"
