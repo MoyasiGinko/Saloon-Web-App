@@ -62,7 +62,7 @@ export const ShowCategories = () => {
       <div>
         <AddCategory onSave={fetchData} />
       </div>
-      <h1>Categories</h1>
+      {/* <h1>Categories</h1> */}
       <div className={styles.cardsContainer}>
         {categories.map((category) => (
           <div key={category._id} className={styles.card}>

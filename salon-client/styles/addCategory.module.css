@@ -1,57 +1,54 @@
-/* addcategory.module.css */
-.addCategory {
+.addCategoryForm {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.heading {
-  text-align: center;
-}
-
-.formContainer {
-  display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ffffff5f;
+  padding: 20px;
   gap: 10px;
-  width: 250px;
-  margin: 0 auto;
-}
-
-.errorMessage {
-  color: #ff0000;
+  margin: 10px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.5s ease forwards;
 }
 
 .addCategoryInput {
-  width: 200px;
-  padding: 8px;
+  width: 100%;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  outline: none;
-  color: #ff0000;
+  transition: border-color 0.3s ease;
+  color: #000;
 }
 
 .addCategoryInput:focus {
-  border-color: #ff0000;
+  border-color: #007bff;
+}
+
+.addCategoryButtons {
+  text-align: right;
 }
 
 .button {
-  padding: 8px 16px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-
-.saveButton {
-  background-color: #007bff;
-  color: #ffffff;
-}
-
-.cancelButton {
-  background-color: #ff0000;
-  color: #ffffff;
+  transition: background-color 0.3s ease;
 }
 
 .button:hover {
-  filter: brightness(0.9);
+  background-color: #0056b3;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
