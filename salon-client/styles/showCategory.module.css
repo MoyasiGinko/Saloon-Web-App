@@ -1,64 +1,38 @@
-/* showCategory.module.css */
-.showCategory {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 20px;
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
 }
 
-.categoryCard {
-  background-color: #f0f0f0;
+.card {
+  background-color: #f0f0f05d;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  color: #000;
 }
 
-.categoryCard:hover {
-  transform: translateY(-10px);
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 1px 6px 1px #7ddeff;
 }
 
-.categoryName {
-  font-size: 24px;
-  margin-bottom: 10px;
+.actions {
+  margin-top: 10px;
 }
 
-.categoryDescription {
-  margin-bottom: 10px;
-}
-
-.categoryInfo {
-  margin-bottom: 5px;
-}
-
-.buttonGroup {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.editButton,
-.deleteButton {
-  padding: 8px 16px;
+.actions button {
+  margin-right: 10px;
+  padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-
-.editButton {
   background-color: #007bff;
-  color: #ffffff;
+  color: #fff;
+  transition: background-color 0.3s ease-in-out;
 }
 
-.deleteButton {
-  background-color: #dc3545;
-  color: #ffffff;
-}
-
-.editButton:hover {
+.actions button:hover {
   background-color: #0056b3;
-}
-
-.deleteButton:hover {
-  background-color: #c82333;
 }

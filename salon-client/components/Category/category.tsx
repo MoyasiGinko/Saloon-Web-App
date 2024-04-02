@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Image from "next/image";
 import { EditCategory } from "./editCategory";
 import { AddCategory } from "./addCategory";
 import { toast } from "react-toastify";
@@ -64,37 +63,29 @@ export const ShowCategories = () => {
         <AddCategory onSave={fetchData} />
       </div>
       <h1>Categories</h1>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {categories.map((category) => (
-            <tr key={category._id}>
-              <td>
-                {editingCategory?._id === category._id ? (
-                  <EditCategory
-                    category={category}
-                    onSave={handleSave}
-                    onCancel={handleCancel}
-                  />
-                ) : (
-                  category.name
-                )}
-              </td>
-              <td>
-                <button onClick={() => handleEdit(category)}>Edit</button>
-                <button onClick={() => handleDelete(category._id)}>
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className={styles.cardsContainer}>
+        {categories.map((category) => (
+          <div key={category._id} className={styles.card}>
+            {editingCategory?._id === category._id ? (
+              <EditCategory
+                category={category}
+                onSave={handleSave}
+                onCancel={handleCancel}
+              />
+            ) : (
+              <>
+                <p>{category.name}</p>
+                <div className={styles.actions}>
+                  <button onClick={() => handleEdit(category)}>Edit</button>
+                  <button onClick={() => handleDelete(category._id)}>
+                    Delete
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

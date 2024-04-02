@@ -39,9 +39,8 @@ export const EditCategory = ({
 
   return (
     <form className={styles.editCategoryForm} onSubmit={handleSubmit}>
-      <h1>Edit Category</h1>
+      {/* <h1>Edit Category</h1> */}
       <label>
-        Name:
         <input
           className={styles.editCategoryInput}
           type="text"
