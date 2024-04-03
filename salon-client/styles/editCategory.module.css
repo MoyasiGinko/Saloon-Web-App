@@ -36,23 +36,28 @@
   border-color: #ff0000;
 }
 
-.button {
-  padding: 8px 16px;
+.cancelButton,
+.saveButton {
+  padding: 6px 12px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-
-.saveButton {
-  background-color: #007bff;
+  margin-top: 4px;
   color: #ffffff;
 }
 
-.cancelButton {
-  background-color: #ff0000;
-  color: #ffffff;
+.saveButton:hover {
+  /* background-color: #007bff; */
+  color: #007bff;
 }
 
-.button:hover {
-  filter: brightness(0.9);
+.cancelButton:hover {
+  /* background-color: #ff0000; */
+  color: #ff0000;
+}
+
+.cancelButton:hover,
+.saveButton:hover {
+  background-color: rgba(0, 255, 255, 0.09);
+  /* filter: brightness(0.9); */
 }

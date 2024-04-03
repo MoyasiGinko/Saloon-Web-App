@@ -29,17 +29,32 @@
 }
 
 .button {
+  position: relative;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #007bff4c; /* Initial background color */
   color: #fff;
   border: none;
+  font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  overflow: hidden; /* Hide overflow to contain the pseudo-element */
+  transition: background-color 0.3s ease; /* Transition for background color change */
 }
 
-.button:hover {
-  background-color: #0056b3;
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0; /* Start with zero width */
+  height: 100%;
+  background-color: #007bff; /* Filling background color */
+  transition: width 0.3s ease; /* Transition for width change */
+  z-index: -1; /* Ensure the pseudo-element is behind the button content */
+}
+
+.button:hover::before {
+  width: 100%; /* Expand width to fill button on hover */
 }
 
 @keyframes slideIn {

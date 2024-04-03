@@ -76,8 +76,16 @@ export const ShowCategories = () => {
               <>
                 <p>{category.name}</p>
                 <div className={styles.actions}>
-                  <button onClick={() => handleEdit(category)}>Edit</button>
-                  <button onClick={() => handleDelete(category._id)}>
+                  <button
+                    className={styles.editButton}
+                    onClick={() => handleEdit(category)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={() => handleDelete(category._id)}
+                  >
                     Delete
                   </button>
                 </div>

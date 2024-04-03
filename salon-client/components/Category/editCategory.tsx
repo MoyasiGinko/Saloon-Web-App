@@ -51,10 +51,14 @@ export const EditCategory = ({
         />
       </label>
       <div className={styles.editCategoryButtons}>
-        <button className={styles.button} type="submit">
+        <button className={styles.saveButton} type="submit">
           Save
         </button>
-        <button className={styles.button} type="button" onClick={onCancel}>
+        <button
+          className={styles.cancelButton}
+          type="button"
+          onClick={onCancel}
+        >
           Cancel
         </button>
       </div>

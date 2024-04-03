@@ -36,13 +36,21 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #007bff;
+  background-color: #007bff4c;
   color: #fff;
   transition: background-color 0.3s ease-in-out;
 }
 
+.editButton:hover {
+  color: #007bff;
+}
+
+.deleteButton:hover {
+  color: #ff0000;
+}
+
 .actions button:hover {
-  background-color: #0056b3;
+  background-color: rgba(0, 255, 255, 0.09);
 }
 
 @keyframes fadeInUp {
