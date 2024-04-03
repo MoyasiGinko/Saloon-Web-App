@@ -2,6 +2,7 @@ import express from "express";
 import userRoutes from "./routes/userRoutes";
 import productRoutes from "./routes/productRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
+import serviceRoutes from "./routes/serviceRoutes";
 import loggerMiddleWare from "./middlewares/loggerMiddleware";
 import { connectDb } from "../config/database";
 import cookieParser from "cookie-parser";
@@ -25,6 +26,7 @@ app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 app.use("/api/users", userRoutes);
 app.use("/api/prod", productRoutes);
 app.use("/api/prod", categoryRoutes);
+app.use("/api/services", serviceRoutes);
 
 process.on("uncaughtException", (err) => {
   console.error("Uncaught exception:", err);
