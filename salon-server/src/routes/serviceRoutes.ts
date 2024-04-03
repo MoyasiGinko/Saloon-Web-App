@@ -16,7 +16,7 @@ const router = express.Router();
 
 router.post("/upload", serviceUploadC);
 router.get("/show", showServiceC);
-router.put("/update", updateServiceC);
+router.put("/update/:id", updateServiceC);
 router.delete("/delete/:id", deleteServiceC);
 router.get("/category", showCategoryC);
 router.get("/category/:category", showServiceByCategoryC);
