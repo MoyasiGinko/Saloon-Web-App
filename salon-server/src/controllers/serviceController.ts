@@ -7,6 +7,9 @@ import {
   deleteServiceS,
   showCategoryS,
   showServiceByCategoryS,
+  addReviewToServiceS,
+  deleteReviewFromServiceS,
+  updateReviewOfServiceS,
 } from "../services/serviceService";
 
 export const serviceUploadC = (req: Request, res: Response) => {
@@ -31,4 +34,16 @@ export const showCategoryC = (req: Request, res: Response) => {
 
 export const showServiceByCategoryC = (req: Request, res: Response) => {
   showServiceByCategoryS(req, res);
+};
+
+export const addReviewToServiceC = (req: Request, res: Response) => {
+  addReviewToServiceS(req, res);
+};
+
+export const updateReviewOfServiceC = async (req: Request, res: Response) => {
+  updateReviewOfServiceS(req, res);
+};
+
+export const deleteReviewOfServiceC = async (req: Request, res: Response) => {
+  deleteReviewFromServiceS(req, res);
 };

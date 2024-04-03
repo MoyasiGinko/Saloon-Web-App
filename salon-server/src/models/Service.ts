@@ -5,6 +5,15 @@ const serviceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  satus: {
+    type: String,
+    enum: ["available", "unavailable"],
+    default: "available",
+  },
+  hide: {
+    type: Boolean,
+    default: false,
+  },
   description: {
     type: String,
     required: true,
@@ -25,7 +34,10 @@ const serviceSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "StaffMember", // Reference to the staff member model
   },
-
+  location: {
+    type: String, // Location where the service is offered
+    required: true,
+  },
   image: {
     type: String, // URLs of images showcasing the service
     required: true,
