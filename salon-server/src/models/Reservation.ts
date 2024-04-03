@@ -19,6 +19,7 @@ const reservationSchema = new mongoose.Schema({
     type: String,
     enum: ["pending", "confirmed", "cancelled"],
     default: "pending",
+    required: true,
   },
   payment: {
     type: Number,
@@ -30,4 +31,4 @@ const reservationSchema = new mongoose.Schema({
   },
 });
 
-const Reservation = mongoose.model("Reservation", reservationSchema);
+export const Reservation = mongoose.model("Reservation", reservationSchema);

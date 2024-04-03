@@ -3,6 +3,7 @@ import userRoutes from "./routes/userRoutes";
 import productRoutes from "./routes/productRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
 import serviceRoutes from "./routes/serviceRoutes";
+import reservationRoutes from "./routes/reservationRoutes";
 import loggerMiddleWare from "./middlewares/loggerMiddleware";
 import { connectDb } from "../config/database";
 import cookieParser from "cookie-parser";
@@ -27,6 +28,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/prod", productRoutes);
 app.use("/api/prod", categoryRoutes);
 app.use("/api/services", serviceRoutes);
+app.use("/api/reservation", reservationRoutes);
 
 process.on("uncaughtException", (err) => {
   console.error("Uncaught exception:", err);
