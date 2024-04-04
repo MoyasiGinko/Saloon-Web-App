@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { Service } from "./interface"; // Import the Services interface
 import axios from "axios";
 import styles from "../../styles/uploadService.module.css"; // Import CSS file for styling
 import { toast } from "react-toastify";
 
-const UploadServiceForm: React.FC = () => {
+interface UploadServiceFormProps {
+  onSave: (service: Service) => void;
+}
+
+const UploadServiceForm = ({ onSave }: UploadServiceFormProps) => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -27,9 +32,13 @@ const UploadServiceForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/api/services/upload", formData);
+      const response = await axios.post(
+        "http://localhost:3000/api/services/upload",
+        formData
+      );
       console.log("Service uploaded successfully");
       // Optionally, you can redirect the user or perform other actions upon successful upload
+      onSave(response.data.service); // Call the onSave function passed as a prop to update the list of services
       toast.success("Service uploaded successfully");
       setFormData({
         name: "",
