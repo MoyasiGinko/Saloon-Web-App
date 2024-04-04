@@ -1,0 +1,34 @@
+.uploadForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+}
+
+.formLabel {
+  margin-bottom: 10px;
+}
+
+.formInput {
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  color: #ff0000;
+  /* background-color: #ffffff; */
+}
+
+.submitButton {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: #1900ff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+}

@@ -40,6 +40,9 @@ const Navbar: React.FC = () => {
           <a href="/category" className="navbar-item">
             Category
           </a>
+          <a href="/services" className="navbar-item">
+            Services
+          </a>
           {/* Account dropdown */}
           <a
             href="#"
