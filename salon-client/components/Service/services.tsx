@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import { Service } from "./interface";
 import axios from "axios";
@@ -6,14 +7,13 @@ import { toast } from "react-toastify";
 import styles from "../../styles/services.module.css";
 import Modal from "./modal"; // Import Modal component
 import UploadServiceForm from "./uploadService";
+import { EditServiceForm } from "./editService";
 
 export const Services: React.FC = () => {
   const [services, setServices] = useState<Service[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    fetchServices();
-  }, []);
+  const [editingService, setEditingService] = useState<Service | null>(null);
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const fetchServices = async () => {
     try {
@@ -25,6 +25,41 @@ export const Services: React.FC = () => {
       console.error("Error fetching services", error);
       // Handle error appropriately
     }
+  };
+
+  useEffect(() => {
+    fetchServices();
+  }, []);
+
+  const handleEdit = (service: Service) => {
+    setEditingService(service);
+    setIsEditModalOpen(true);
+  };
+
+  const handleSave = (newService: Service) => {
+    fetchServices();
+    console.log("The new service is", newService);
+    console.log("The editing service is", editingService);
+    const isChanged =
+      newService._id === editingService?._id &&
+      newService.name === editingService?.name &&
+      newService.description === editingService?.description &&
+      newService.duration === editingService?.duration &&
+      newService.price === editingService?.price &&
+      newService.category === editingService?.category &&
+      newService.staff === editingService?.staff &&
+      newService.location === editingService?.location;
+    newService.image === editingService?.image;
+    setEditingService(null);
+    setIsEditModalOpen(false);
+    if (!isChanged) {
+      toast.success("Service updated successfully");
+    }
+  };
+
+  const handleCancel = () => {
+    setEditingService(null);
+    setIsEditModalOpen(false);
   };
 
   const handleDelete = async (id: string) => {
@@ -39,22 +74,22 @@ export const Services: React.FC = () => {
     }
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const openUploadModal = () => {
+    setIsUploadModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closeUploadModal = () => {
+    setIsUploadModalOpen(false);
   };
 
   return (
     <div className={styles.servicesContainer}>
-      <button onClick={openModal}>Add New Service</button>
-      <Modal isOpen={isModalOpen} closeModal={closeModal}>
+      <button onClick={openUploadModal}>Add New Service</button>
+      <Modal isOpen={isUploadModalOpen} closeModal={closeUploadModal}>
         <UploadServiceForm
           onSave={() => {
             fetchServices();
-            closeModal();
+            closeUploadModal();
           }}
         />
       </Modal>
@@ -69,6 +104,17 @@ export const Services: React.FC = () => {
             <p>Category: {service.category}</p>
             <p>Staff: {service.staff}</p>
             <p>Location: {service.location}</p>
+            <img
+              src={`http://localhost:3000/${service.image}`}
+              alt="Service"
+              className={styles.serviceImage}
+            />
+            <button
+              className={styles.editButton}
+              onClick={() => handleEdit(service)}
+            >
+              Edit
+            </button>
             <button
               className={styles.deleteButton}
               onClick={() => handleDelete(service._id)}
@@ -78,6 +124,15 @@ export const Services: React.FC = () => {
           </div>
         ))}
       </div>
+      {editingService && (
+        <Modal isOpen={isEditModalOpen} closeModal={handleCancel}>
+          <EditServiceForm
+            service={editingService}
+            onSave={handleSave}
+            onCancel={handleCancel}
+          />
+        </Modal>
+      )}
     </div>
   );
 };
