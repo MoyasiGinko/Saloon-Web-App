@@ -61,8 +61,8 @@ const UploadServiceForm = ({ onSave }: UploadServiceFormProps) => {
   return (
     <form className={styles.uploadForm} onSubmit={handleSubmit}>
       <label className={styles.formLabel}>
-        Name:
         <input
+          placeholder="Enter Service Name"
           className={styles.formInput}
           type="text"
           name="name"
@@ -72,8 +72,8 @@ const UploadServiceForm = ({ onSave }: UploadServiceFormProps) => {
         />
       </label>
       <label className={styles.formLabel}>
-        Description:
         <input
+          placeholder="Enter Service Description"
           className={styles.formInput}
           type="text"
           name="description"
@@ -83,8 +83,8 @@ const UploadServiceForm = ({ onSave }: UploadServiceFormProps) => {
         />
       </label>
       <label className={styles.formLabel}>
-        Duration (in minutes):
         <input
+          placeholder="Enter Service Duration"
           className={styles.formInput}
           type="number"
           name="duration"
@@ -94,8 +94,8 @@ const UploadServiceForm = ({ onSave }: UploadServiceFormProps) => {
         />
       </label>
       <label className={styles.formLabel}>
-        Price:
         <input
+          placeholder="Enter Service Price"
           className={styles.formInput}
           type="number"
           name="price"
@@ -105,8 +105,8 @@ const UploadServiceForm = ({ onSave }: UploadServiceFormProps) => {
         />
       </label>
       <label className={styles.formLabel}>
-        Category:
         <input
+          placeholder="Enter Service Category"
           className={styles.formInput}
           type="text"
           name="category"
@@ -116,8 +116,8 @@ const UploadServiceForm = ({ onSave }: UploadServiceFormProps) => {
         />
       </label>
       <label className={styles.formLabel}>
-        Staff Member ID:
         <input
+          placeholder="Enter Staff Member"
           className={styles.formInput}
           type="text"
           name="staff"
@@ -127,8 +127,8 @@ const UploadServiceForm = ({ onSave }: UploadServiceFormProps) => {
         />
       </label>
       <label className={styles.formLabel}>
-        Location:
         <input
+          placeholder="Enter Service Location"
           className={styles.formInput}
           type="text"
           name="location"
@@ -138,8 +138,8 @@ const UploadServiceForm = ({ onSave }: UploadServiceFormProps) => {
         />
       </label>
       <label className={styles.formLabel}>
-        Image URL:
         <input
+          placeholder="Enter Image URL"
           className={styles.formInput}
           type="text"
           name="image"
@@ -148,7 +148,6 @@ const UploadServiceForm = ({ onSave }: UploadServiceFormProps) => {
           required
         />
       </label>
-      <br />
       <button className={styles.submitButton} type="submit">
         Upload Service
       </button>

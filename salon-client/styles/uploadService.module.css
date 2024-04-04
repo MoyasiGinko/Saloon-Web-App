@@ -1,34 +1,67 @@
+/* uploadService.module.css */
+
 .uploadForm {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  width: auto;
+  padding-left: 20px;
+  padding-top: 10px;
+
+  /* max-width: 500px; */
   margin: auto;
 }
 
-.formLabel {
-  margin-bottom: 10px;
+.formTitle {
+  font-size: 24px;
+  font-weight: bold;
+  /* margin-bottom: 10px; */
+  color: #333333;
+  text-align: center;
 }
 
-.formInput {
-  padding: 8px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
+.formLabel {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #555555;
+}
+
+.formInput,
+.formTextarea {
+  width: calc(100% - 24px); /* Adjusted width */
+  padding: 20px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
   border-radius: 5px;
-  width: 100%;
-  color: #ff0000;
-  /* background-color: #ffffff; */
+  transition: border-color 0.3s ease;
+}
+
+.formInput:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 120px; /* Increased height */
 }
 
 .submitButton {
-  padding: 10px 20px;
-  margin-top: 10px;
-  background-color: #007bff;
-  color: #1900ff;
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(45deg, #af4c4c, #cc2e2e);
+  color: #ffffff;
+  font-size: 18px;
+  text-align: center;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .submitButton:hover {
-  background-color: #0056b3;
+  background: linear-gradient(45deg, #a04545, #b32929);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
