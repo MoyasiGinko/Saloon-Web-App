@@ -2,12 +2,14 @@
 import React, { useState, useEffect } from "react";
 import { Service } from "./interface";
 import axios from "axios";
-import UploadServiceForm from "./uploadService";
 import { toast } from "react-toastify";
 import styles from "../../styles/services.module.css";
+import Modal from "./modal"; // Import Modal component
+import UploadServiceForm from "./uploadService";
 
 export const Services: React.FC = () => {
   const [services, setServices] = useState<Service[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchServices();
@@ -27,7 +29,7 @@ export const Services: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:3000/api/services/delete/${id}`); //TODO: use env variable
+      await axios.delete(`http://localhost:3000/api/services/delete/${id}`);
       const updatedServices = services.filter((service) => service._id !== id);
       setServices(updatedServices);
       toast.success("Service deleted successfully");
@@ -37,12 +39,26 @@ export const Services: React.FC = () => {
     }
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className={styles.servicesContainer}>
-      {/* <h2>Services</h2> */}
-      <div>
-        <UploadServiceForm onSave={fetchServices} />
-      </div>
+      <button onClick={openModal}>Add New Service</button>
+      <Modal isOpen={isModalOpen} closeModal={closeModal}>
+        <UploadServiceForm
+          onSave={() => {
+            fetchServices();
+            closeModal();
+          }}
+        />
+      </Modal>
+      <div id="modal-root"></div>
       <div className={styles.servicesList}>
         {services.map((service) => (
           <div key={service._id} className={styles.serviceCard}>
