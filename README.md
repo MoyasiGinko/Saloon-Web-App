@@ -49,7 +49,7 @@ cd Saloon-Web-App
 To install the dependencies for the backend:
 
 ```bash
-cd sallon-server
+cd salon-server
 npm install
 npm run start
 ```
@@ -57,7 +57,7 @@ npm run start
 To install the dependencies for the frontend:
 
 ```bash
-cd sallon-client
+cd salon-client
 npm install
 npm run dev
 ```

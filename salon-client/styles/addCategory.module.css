@@ -1,0 +1,69 @@
+.addCategoryForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ffffff5f;
+  padding: 20px;
+  gap: 10px;
+  margin: 10px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.5s ease forwards;
+}
+
+.addCategoryInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+  color: #000;
+}
+
+.addCategoryInput:focus {
+  border-color: #007bff;
+}
+
+.addCategoryButtons {
+  text-align: right;
+}
+
+.button {
+  position: relative;
+  padding: 10px 20px;
+  background-color: #007bff4c; /* Initial background color */
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  overflow: hidden; /* Hide overflow to contain the pseudo-element */
+  transition: background-color 0.3s ease; /* Transition for background color change */
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0; /* Start with zero width */
+  height: 100%;
+  background-color: #007bff; /* Filling background color */
+  transition: width 0.3s ease; /* Transition for width change */
+  z-index: -1; /* Ensure the pseudo-element is behind the button content */
+}
+
+.button:hover::before {
+  width: 100%; /* Expand width to fill button on hover */
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

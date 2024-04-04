@@ -1,0 +1,63 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  width: 250px;
+}
+
+.errorMessage {
+  color: #ff0000;
+}
+
+.inputField {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.inputField:focus {
+  border-color: #007bff;
+}
+
+.fileInput {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+.selectField {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+}
+
+.saveButton,
+.cancelButton {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.saveButton {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.cancelButton {
+  background-color: #dc3545;
+  color: #ffffff;
+}

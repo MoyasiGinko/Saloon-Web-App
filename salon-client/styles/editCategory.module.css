@@ -1,0 +1,63 @@
+/* editCategory.module.css */
+
+.editCategory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.heading {
+  text-align: center;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.errorMessage {
+  color: #ff0000;
+}
+
+.editCategoryInput {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  color: #ff0000;
+}
+
+.editCategoryInput:focus {
+  border-color: #ff0000;
+}
+
+.cancelButton,
+.saveButton {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 4px;
+  color: #ffffff;
+}
+
+.saveButton:hover {
+  /* background-color: #007bff; */
+  color: #007bff;
+}
+
+.cancelButton:hover {
+  /* background-color: #ff0000; */
+  color: #ff0000;
+}
+
+.cancelButton:hover,
+.saveButton:hover {
+  background-color: rgba(0, 255, 255, 0.09);
+  /* filter: brightness(0.9); */
+}
