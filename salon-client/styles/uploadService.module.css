@@ -55,7 +55,7 @@
   /* width: 100%; */
   padding: 12px;
   margin-right: 24px;
-  background: linear-gradient(45deg, #af4c4c, #cc2e2e);
+  background: linear-gradient(45deg, #7d45a0, #296eb3);
   color: #ffffff;
   font-size: 18px;
   text-align: center;
@@ -67,7 +67,7 @@
 }
 
 .submitButton:hover {
-  background: linear-gradient(45deg, #a04545, #b32929);
+  background: linear-gradient(45deg, #4e4caf, #ba2ecc);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 

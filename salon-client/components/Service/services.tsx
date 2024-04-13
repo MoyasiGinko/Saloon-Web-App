@@ -86,7 +86,12 @@ export const Services: React.FC = () => {
 
   return (
     <div className={styles.servicesContainer}>
-      <button onClick={openUploadModal}>Add New Service</button>
+      <div className={styles.servicesHeader}>
+        <h1 className={styles.headersTitle}>Services Management</h1>
+        <button className={styles.addServiceButton} onClick={openUploadModal}>
+          Add New Service
+        </button>
+      </div>
       <Modal isOpen={isUploadModalOpen} closeModal={closeUploadModal}>
         <UploadServiceForm
           onSave={() => {
@@ -99,13 +104,17 @@ export const Services: React.FC = () => {
       <div className={styles.servicesList}>
         {services.map((service) => (
           <div key={service._id} className={styles.serviceCard}>
-            <h3>{service.name}</h3>
-            <p>Description: {service.description}</p>
-            <p>Duration: {service.duration}</p>
-            <p>Price: {service.price}</p>
-            <p>Category: {service.category}</p>
-            <p>Staff: {service.staff}</p>
-            <p>Location: {service.location}</p>
+            <h3 className={styles.serviceTitle}>{service.name}</h3>
+            <p className={styles.serviceDescription}>
+              Description: {service.description}
+            </p>
+            <div className={styles.serviceInfo}>
+              <p>Duration: {service.duration}</p>
+              <p>Price: {service.price}</p>
+              <p>Category: {service.category}</p>
+              <p>Staff: {service.staff}</p>
+              <p>Location: {service.location}</p>
+            </div>
             <img
               src={service.image}
               alt="Service"
