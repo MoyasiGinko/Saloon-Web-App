@@ -40,20 +40,26 @@ export const Services: React.FC = () => {
     fetchServices();
     console.log("The new service is", newService);
     console.log("The editing service is", editingService);
-    const isChanged =
-      newService._id === editingService?._id &&
-      newService.name === editingService?.name &&
-      newService.description === editingService?.description &&
-      newService.duration === editingService?.duration &&
-      newService.price === editingService?.price &&
-      newService.category === editingService?.category &&
-      newService.staff === editingService?.staff &&
-      newService.location === editingService?.location;
-    newService.image === editingService?.image;
-    setEditingService(null);
-    setIsEditModalOpen(false);
-    if (!isChanged) {
-      toast.success("Service updated successfully");
+
+    // Check if editingService is defined
+    if (editingService) {
+      const isChanged =
+        newService._id === editingService._id &&
+        newService.name === editingService.name &&
+        newService.description === editingService.description &&
+        newService.duration === editingService.duration &&
+        newService.price === editingService.price &&
+        newService.category === editingService.category &&
+        newService.staff === editingService.staff &&
+        newService.location === editingService.location;
+      newService.image === editingService.image;
+
+      setEditingService(null);
+      setIsEditModalOpen(false);
+
+      if (!isChanged) {
+        toast.success("Service updated successfully");
+      }
     }
   };
 

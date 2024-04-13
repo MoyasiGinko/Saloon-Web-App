@@ -1,6 +1,6 @@
 //editCategory.tsx
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Category } from "./interface";
 import { toast } from "react-toastify";
@@ -17,7 +17,7 @@ export const EditCategory = ({
   onSave,
   onCancel,
 }: EditCategoryProps) => {
-  const [editedCategory, setEditedCategory] = React.useState({
+  const [editedCategory, setEditedCategory] = useState({
     _id: category._id,
     name: category.name,
   });

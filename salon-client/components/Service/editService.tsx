@@ -1,7 +1,7 @@
 // editService.tsx
 import React, { useState } from "react";
-import { Service } from "./interface";
 import axios from "axios";
+import { Service } from "./interface";
 import { toast } from "react-toastify";
 import styles from "../../styles/editService.module.css";
 
@@ -17,6 +17,7 @@ export const EditServiceForm = ({
   onCancel,
 }: EditServiceFormProps) => {
   const [formData, setFormData] = useState({
+    _id: service._id,
     name: service.name,
     description: service.description,
     duration: service.duration,
@@ -39,13 +40,12 @@ export const EditServiceForm = ({
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:3000/api/services/update/${service._id}`,
-        formData
+        `http://localhost:3000/api/services/update/${formData._id}`,
+        formData,
+        { headers: { "Content-Type": "application/json" } }
       );
-      console.log("Response data:", response.data); // Log the response data
-      onSave(response.data.service);
-      console.log("Service updated successfully");
-      toast.success("Service updated successfully");
+      console.log("Response data:", response.data);
+      onSave(response.data);
     } catch (error) {
       console.error("Error updating service", error);
       toast.error("Error updating service");
