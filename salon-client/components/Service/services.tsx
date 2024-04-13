@@ -56,10 +56,6 @@ export const Services: React.FC = () => {
 
       setEditingService(null);
       setIsEditModalOpen(false);
-
-      if (!isChanged) {
-        toast.success("Service updated successfully");
-      }
     }
   };
 
@@ -111,7 +107,7 @@ export const Services: React.FC = () => {
             <p>Staff: {service.staff}</p>
             <p>Location: {service.location}</p>
             <img
-              src={`http://localhost:3000/${service.image}`}
+              src={service.image}
               alt="Service"
               className={styles.serviceImage}
             />

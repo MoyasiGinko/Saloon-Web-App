@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Service } from "./interface";
 import { toast } from "react-toastify";
-import styles from "../../styles/editService.module.css";
+import styles from "../../styles/editService.module.css"; // Import the CSS file
 
 interface EditServiceFormProps {
   service: Service;
@@ -46,6 +46,7 @@ export const EditServiceForm = ({
       );
       console.log("Response data:", response.data);
       onSave(response.data);
+      toast.success("Service updated successfully");
     } catch (error) {
       console.error("Error updating service", error);
       toast.error("Error updating service");
@@ -118,14 +119,10 @@ export const EditServiceForm = ({
         value={formData.image}
         onChange={handleChange}
       />
-      <button type="submit" className={styles.editServiceButton}>
+      <button type="submit" className={styles.updateButton}>
         Update Service
       </button>
-      <button
-        type="button"
-        onClick={onCancel}
-        className={styles.editServiceButton}
-      >
+      <button type="button" onClick={onCancel} className={styles.cancelButton}>
         Cancel
       </button>
     </form>
