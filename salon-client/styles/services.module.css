@@ -1,0 +1,139 @@
+/* services.module.css */
+
+.servicesContainer {
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.servicesList {
+  display: grid;
+  margin-top: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.servicesHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease-in-out;
+  animation: fadeInUp 0.5s ease backwards;
+}
+
+.headersTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: hsla(0, 0%, 96%, 0.878);
+}
+
+.addServiceButton {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  background: linear-gradient(45deg, #e30404a4, #0076f4ab);
+  color: #eeecec;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.addServiceButton:hover {
+  background: linear-gradient(45deg, #e30404, #0076f4);
+  transform: translateY(-2px);
+}
+
+.serviceCard {
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #ffffffb5;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  animation: fadeInUp 0.5s ease backwards;
+}
+
+.serviceCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 1px 6px 1px #7ddeff;
+}
+
+/* .serviceCardContent {
+  margin-bottom: 15px;
+} */
+
+.serviceTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.serviceDescription {
+  font-size: 16px;
+  color: #666;
+}
+
+.serviceInfo {
+  margin-bottom: 10px;
+}
+
+.serviceInfo p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #454545;
+}
+
+.serviceImage {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editButton,
+.deleteButton {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.editButton {
+  background: linear-gradient(45deg, #04e338a4, #0076f4ab);
+  color: #fff;
+}
+
+.deleteButton {
+  margin-left: 4px;
+  background: linear-gradient(45deg, #e30404a4, #0076f4ab);
+  color: #fff;
+}
+
+.editButton:hover,
+.deleteButton:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+.editButton:focus,
+.deleteButton:focus {
+  outline: none;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

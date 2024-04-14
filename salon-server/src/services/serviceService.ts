@@ -49,8 +49,16 @@ export const showServiceS = async (req: Request, res: Response) => {
 export const updateServiceS = async (req: Request, res: Response) => {
   try {
     const serviceId = req.params.id;
-    const { name, description, duration, price, category, staff, image } =
-      req.body;
+    const {
+      name,
+      description,
+      duration,
+      price,
+      category,
+      staff,
+      image,
+      location,
+    } = req.body;
     const service = await Service.findById(serviceId);
 
     if (!service) {
@@ -67,6 +75,7 @@ export const updateServiceS = async (req: Request, res: Response) => {
     service.price = price;
     service.staff = staff;
     service.image = image;
+    service.location = location;
 
     await service.save();
     return res.status(200).json({ message: "Service updated successfully" });

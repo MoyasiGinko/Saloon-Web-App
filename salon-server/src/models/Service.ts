@@ -31,8 +31,10 @@ const serviceSchema = new mongoose.Schema({
     required: true,
   },
   staff: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "StaffMember", // Reference to the staff member model
+    type: String,
+    required: true,
+    // type: mongoose.Schema.Types.ObjectId,
+    // ref: "StaffMember",
   },
   location: {
     type: String, // Location where the service is offered
