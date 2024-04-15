@@ -92,7 +92,9 @@ export const ReviewService: React.FC<ReviewServiceProps> = ({
             </div>
           </div>
           <div className={styles.reviews}>
-            <h3 className={styles.reviewsTitle}>Reviews</h3>
+            <h3 className={styles.reviewsTitle}>
+              Reviews By Users: ({service.reviews.length})
+            </h3>
             <div className={styles.reviewList}>
               {service.reviews.map((review: Reviews) => (
                 <div className={styles.reviewItem} key={review._id}>
