@@ -7,32 +7,69 @@
 .serviceContainer {
   display: flex;
   justify-content: space-between;
-  max-width: 900px; /* Increase max-width */
+  max-width: 900px;
   width: 100%;
 }
 
 .serviceDetails {
   flex: 1;
-  padding-right: 40px; /* Increase padding */
+  padding-right: 40px;
+}
+
+.serviceDetails img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.serviceDetails h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.serviceDetails p {
+  margin: 5px 0;
+}
+
+.serviceInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
 }
 
 .reviews {
   flex: 1;
-  height: 500px; /* Set fixed height */
-  overflow-y: auto; /* Add scrollbar if content exceeds height */
+  height: 500px;
+  width: 100%;
+  overflow-y: auto;
 }
 
 .reviewList {
+  width: 100%;
   padding-top: 20px;
 }
 
 .reviewItem {
   border-bottom: 1px solid #ccc;
-  padding-bottom: 15px; /* Increase padding */
-  margin-bottom: 15px; /* Increase margin */
+  padding-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .reviewItem:last-child {
   border-bottom: none;
   margin-bottom: 0;
+}
+
+.submitButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #45a049;
 }

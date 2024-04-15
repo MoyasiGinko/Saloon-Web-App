@@ -104,6 +104,10 @@ export const Services = () => {
     setIsEditModalOpen(false);
   };
 
+  const handleCloseReviewModal = () => {
+    setIsReviewModalOpen(false);
+  };
+
   const handleDelete = async (id: string) => {
     try {
       await axios.delete(`http://localhost:3000/api/services/delete/${id}`);
@@ -192,7 +196,12 @@ export const Services = () => {
       )}
       {isReviewModalOpen && (
         <Modal isOpen={isReviewModalOpen} closeModal={handleCancelReview}>
-          {selectedServiceId && <ReviewService id={selectedServiceId} />}
+          {selectedServiceId && (
+            <ReviewService
+              id={selectedServiceId}
+              onCancel={handleCloseReviewModal}
+            />
+          )}
         </Modal>
       )}
     </div>

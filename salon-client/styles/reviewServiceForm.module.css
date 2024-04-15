@@ -58,3 +58,26 @@
 .cancelButton:hover {
   background-color: #45a049;
 }
+
+.ratingStars {
+  display: flex;
+  align-items: center;
+}
+
+.starLabel {
+  margin-right: 10px;
+}
+
+.ratingInput {
+  display: none;
+}
+
+.starIcon {
+  font-size: 1.5rem;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.starIconFilled {
+  color: rgb(255, 213, 0);
+}

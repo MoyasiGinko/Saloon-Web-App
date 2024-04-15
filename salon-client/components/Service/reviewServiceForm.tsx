@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Service } from "./interface";
 import styles from "../../styles/reviewServiceForm.module.css";
+import { FaStar } from "react-icons/fa";
 
 interface ReviewServiceFormProps {
   service: Service;
@@ -20,6 +21,13 @@ export const ReviewServiceForm: React.FC<ReviewServiceFormProps> = ({
     rating: 0,
     comment: "",
   });
+
+  const handleRatingChange = (rating: number) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      rating: rating,
+    }));
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -58,15 +66,27 @@ export const ReviewServiceForm: React.FC<ReviewServiceFormProps> = ({
       <h2 className={styles.formTitle}>Write Your Review</h2>
       <div className={styles.formGroup}>
         <label className={styles.formLabel}>Rating:</label>
-        <input
-          type="number"
-          name="rating"
-          min="0"
-          max="5"
-          className={styles.formInput}
-          value={formData.rating}
-          onChange={handleChange}
-        />
+        <div className={styles.ratingStars}>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <label key={star} className={styles.starLabel}>
+              <input
+                type="radio"
+                name="rating"
+                value={star}
+                onChange={() => handleRatingChange(star)}
+                checked={formData.rating === star}
+                className={styles.ratingInput}
+              />
+              <FaStar
+                className={
+                  star <= formData.rating
+                    ? `${styles.starIcon} ${styles.starIconFilled}`
+                    : styles.starIcon
+                }
+              />
+            </label>
+          ))}
+        </div>
       </div>
       <div className={styles.formGroup}>
         <label className={styles.formLabel}>Comment:</label>
