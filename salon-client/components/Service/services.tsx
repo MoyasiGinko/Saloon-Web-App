@@ -164,24 +164,28 @@ export const Services = () => {
               alt="Service"
               className={styles.serviceImage}
             />
-            <button
-              className={styles.editButton}
-              onClick={() => handleEdit(service)}
-            >
-              Edit
-            </button>
-            <button
-              className={styles.deleteButton}
-              onClick={() => handleDelete(service._id)}
-            >
-              Delete
-            </button>
-            <button
-              className={styles.reviewButton}
-              onClick={() => handleReview(service)}
-            >
-              Review
-            </button>
+            <div className={styles.actions}>
+              <button
+                className={styles.reviewButton}
+                onClick={() => handleReview(service)}
+              >
+                Review
+              </button>
+              <div className={styles.buttonsContainer}>
+                <button
+                  className={styles.editButton}
+                  onClick={() => handleEdit(service)}
+                >
+                  Edit
+                </button>
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => handleDelete(service._id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
         ))}
       </div>

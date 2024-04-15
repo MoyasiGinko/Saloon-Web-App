@@ -84,7 +84,7 @@ export const ReviewService: React.FC<ReviewServiceProps> = ({
             </div>
             <div className={styles.buttonsContainer}>
               <button className={styles.submitButton} onClick={handleReview}>
-                Review Service
+                Give a Review
               </button>
               <button className={styles.cancelButton} onClick={onCancel}>
                 Cancel
