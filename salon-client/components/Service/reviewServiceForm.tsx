@@ -7,10 +7,14 @@ import styles from "../../styles/reviewServiceForm.module.css";
 
 interface ReviewServiceFormProps {
   service: Service;
+  updateReviews: () => Promise<void>; // Function to update reviews after adding a new one
+  closeModal: () => void; // Function to close the modal
 }
 
 export const ReviewServiceForm: React.FC<ReviewServiceFormProps> = ({
   service,
+  updateReviews,
+  closeModal, // Add closeModal to props
 }) => {
   const [formData, setFormData] = useState({
     serviceId: service._id,
@@ -36,15 +40,18 @@ export const ReviewServiceForm: React.FC<ReviewServiceFormProps> = ({
         formData
       );
       console.log("Review uploaded successfully");
-      // Optionally, you can redirect the user or perform other actions upon successful upload
       toast.success("Review uploaded successfully");
       setFormData({
         serviceId: service._id,
         rating: 0,
         comment: "",
       });
-    } catch (error) {}
-    console.log("Review form data:", formData);
+      await updateReviews(); // Fetch updated reviews after successful review submission
+      closeModal(); // Close the modal after successful submission
+    } catch (error) {
+      console.error("Error uploading review", error);
+      toast.error("Error uploading review");
+    }
   };
 
   return (
@@ -70,5 +77,3 @@ export const ReviewServiceForm: React.FC<ReviewServiceFormProps> = ({
     </form>
   );
 };
-
-export default ReviewServiceForm;

@@ -10,6 +10,7 @@ import {
   addReviewToServiceS,
   deleteReviewFromServiceS,
   updateReviewOfServiceS,
+  findServiceByIdS,
 } from "../services/serviceService";
 
 export const serviceUploadC = (req: Request, res: Response) => {
@@ -46,4 +47,8 @@ export const updateReviewOfServiceC = async (req: Request, res: Response) => {
 
 export const deleteReviewOfServiceC = async (req: Request, res: Response) => {
   deleteReviewFromServiceS(req, res);
+};
+
+export const findServiceByIdC = async (req: Request, res: Response) => {
+  findServiceByIdS(req, res);
 };

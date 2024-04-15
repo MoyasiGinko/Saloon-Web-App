@@ -17,7 +17,9 @@ export const Services = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-
+  const [selectedServiceId, setSelectedServiceId] = useState<string | null>(
+    null
+  );
   const fetchServices = async () => {
     try {
       const response = await axios.get(
@@ -39,10 +41,35 @@ export const Services = () => {
     setIsEditModalOpen(true);
   };
 
-  const handleReview = (service: Service) => {
-    // Implement review functionality
-    setSelectedService(service);
+  // const handleReview = (service: Service) => {
+  //   // Implement review functionality
+  //   setSelectedService(service);
+  //   setIsReviewModalOpen(true);
+  // };
+
+  // Fetch service by ID function
+  const fetchServiceById = async (id: string) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/services/show/${id}`
+      );
+      return response.data.service;
+    } catch (error) {
+      console.error("Error fetching service", error);
+      // Handle error appropriately
+    }
+  };
+
+  // Review button click handler
+  const handleReview = async (service: Service) => {
+    setSelectedServiceId(service._id);
     setIsReviewModalOpen(true);
+  };
+
+  // Cancel review modal handler
+  const handleCancelReview = () => {
+    setIsReviewModalOpen(false);
+    setSelectedServiceId(null);
   };
 
   const handleSave = (newService: Service) => {
@@ -164,14 +191,8 @@ export const Services = () => {
         </Modal>
       )}
       {isReviewModalOpen && (
-        <Modal
-          isOpen={isReviewModalOpen}
-          closeModal={() => {
-            setIsReviewModalOpen(false);
-            setSelectedService(null); // Clear selected service when modal is closed
-          }}
-        >
-          {selectedService && <ReviewService service={selectedService} />}
+        <Modal isOpen={isReviewModalOpen} closeModal={handleCancelReview}>
+          {selectedServiceId && <ReviewService id={selectedServiceId} />}
         </Modal>
       )}
     </div>
