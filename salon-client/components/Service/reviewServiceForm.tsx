@@ -1,4 +1,3 @@
-// reviewServiceForm.tsx
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -14,7 +13,7 @@ interface ReviewServiceFormProps {
 export const ReviewServiceForm: React.FC<ReviewServiceFormProps> = ({
   service,
   updateReviews,
-  closeModal, // Add closeModal to props
+  closeModal,
 }) => {
   const [formData, setFormData] = useState({
     serviceId: service._id,
@@ -42,12 +41,12 @@ export const ReviewServiceForm: React.FC<ReviewServiceFormProps> = ({
       console.log("Review uploaded successfully");
       toast.success("Review uploaded successfully");
       setFormData({
-        serviceId: service._id,
+        ...formData,
         rating: 0,
         comment: "",
       });
-      await updateReviews(); // Fetch updated reviews after successful review submission
-      closeModal(); // Close the modal after successful submission
+      await updateReviews();
+      closeModal();
     } catch (error) {
       console.error("Error uploading review", error);
       toast.error("Error uploading review");
@@ -56,24 +55,41 @@ export const ReviewServiceForm: React.FC<ReviewServiceFormProps> = ({
 
   return (
     <form className={styles.reviewServiceForm} onSubmit={handleSubmit}>
-      <input
-        type="number"
-        name="rating"
-        placeholder="Rating"
-        className={styles.reviewServiceInput}
-        value={formData.rating}
-        onChange={handleChange}
-      />
-      <textarea
-        name="comment"
-        placeholder="Comment"
-        className={styles.reviewServiceInput}
-        value={formData.comment}
-        onChange={handleChange}
-      />
-      <button type="submit" className={styles.reviewServiceButton}>
-        Submit Review
-      </button>
+      <h2 className={styles.formTitle}>Write Your Review</h2>
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>Rating:</label>
+        <input
+          type="number"
+          name="rating"
+          min="0"
+          max="5"
+          className={styles.formInput}
+          value={formData.rating}
+          onChange={handleChange}
+        />
+      </div>
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>Comment:</label>
+        <textarea
+          name="comment"
+          placeholder="Write your review here..."
+          className={styles.formTextarea}
+          value={formData.comment}
+          onChange={handleChange}
+        />
+      </div>
+      <div className={styles.buttonGroup}>
+        <button type="submit" className={styles.submitButton}>
+          Submit Review
+        </button>
+        <button
+          type="button"
+          onClick={closeModal}
+          className={styles.cancelButton}
+        >
+          Cancel
+        </button>
+      </div>
     </form>
   );
 };

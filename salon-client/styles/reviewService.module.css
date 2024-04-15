@@ -1,0 +1,38 @@
+.reviewService {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.serviceContainer {
+  display: flex;
+  justify-content: space-between;
+  max-width: 900px; /* Increase max-width */
+  width: 100%;
+}
+
+.serviceDetails {
+  flex: 1;
+  padding-right: 40px; /* Increase padding */
+}
+
+.reviews {
+  flex: 1;
+  height: 500px; /* Set fixed height */
+  overflow-y: auto; /* Add scrollbar if content exceeds height */
+}
+
+.reviewList {
+  padding-top: 20px;
+}
+
+.reviewItem {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 15px; /* Increase padding */
+  margin-bottom: 15px; /* Increase margin */
+}
+
+.reviewItem:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
