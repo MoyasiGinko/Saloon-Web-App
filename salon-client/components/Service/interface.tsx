@@ -8,4 +8,12 @@ export interface Service {
   staff: string;
   image: string;
   location: string;
+  reviews: Reviews[];
+}
+
+export interface Reviews {
+  _id: string;
+  user: string;
+  comment: string;
+  rating: number;
 }

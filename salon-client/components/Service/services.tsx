@@ -8,12 +8,15 @@ import styles from "../../styles/services.module.css";
 import Modal from "./modal"; // Import Modal component
 import UploadServiceForm from "./uploadService";
 import { EditServiceForm } from "./editService";
+import { ReviewService } from "./reviewService";
 
-export const Services: React.FC = () => {
+export const Services = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [editingService, setEditingService] = useState<Service | null>(null);
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   const fetchServices = async () => {
     try {
@@ -36,6 +39,12 @@ export const Services: React.FC = () => {
     setIsEditModalOpen(true);
   };
 
+  const handleReview = (service: Service) => {
+    // Implement review functionality
+    setSelectedService(service);
+    setIsReviewModalOpen(true);
+  };
+
   const handleSave = (newService: Service) => {
     fetchServices();
     console.log("The new service is", newService);
@@ -56,6 +65,10 @@ export const Services: React.FC = () => {
 
       setEditingService(null);
       setIsEditModalOpen(false);
+
+      if (!isChanged) {
+        console.log("Service updated successfully");
+      }
     }
   };
 
@@ -132,6 +145,12 @@ export const Services: React.FC = () => {
             >
               Delete
             </button>
+            <button
+              className={styles.reviewButton}
+              onClick={() => handleReview(service)}
+            >
+              Review
+            </button>
           </div>
         ))}
       </div>
@@ -142,6 +161,17 @@ export const Services: React.FC = () => {
             onSave={handleSave}
             onCancel={handleCancel}
           />
+        </Modal>
+      )}
+      {isReviewModalOpen && (
+        <Modal
+          isOpen={isReviewModalOpen}
+          closeModal={() => {
+            setIsReviewModalOpen(false);
+            setSelectedService(null); // Clear selected service when modal is closed
+          }}
+        >
+          {selectedService && <ReviewService service={selectedService} />}
         </Modal>
       )}
     </div>
