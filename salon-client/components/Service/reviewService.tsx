@@ -56,30 +56,48 @@ export const ReviewService: React.FC<ReviewServiceProps> = ({
       {service && (
         <div className={styles.serviceContainer}>
           <div className={styles.serviceDetails}>
-            <img src={service.image} alt={service.name} />
-            <h2>{service.name}</h2>
-            <p>{service.description}</p>
+            <img
+              src={service.image}
+              alt={service.name}
+              className={styles.serviceImage}
+            />
             <div className={styles.serviceInfo}>
-              <p>Duration: {service.duration}</p>
-              <p>Price: {service.price}</p>
-              <p>Category: {service.category}</p>
-              <p>Staff: {service.staff}</p>
-              <p>Location: {service.location}</p>
+              <h2 className={styles.serviceName}>{service.name}</h2>
+              <p className={styles.serviceDescription}>{service.description}</p>
+              <div className={styles.serviceDetails}>
+                <p>
+                  <strong>Duration:</strong> {service.duration}
+                </p>
+                <p>
+                  <strong>Price:</strong> {service.price}
+                </p>
+                <p>
+                  <strong>Category:</strong> {service.category}
+                </p>
+                <p>
+                  <strong>Staff:</strong> {service.staff}
+                </p>
+                <p>
+                  <strong>Location:</strong> {service.location}
+                </p>
+              </div>
             </div>
-            <button className={styles.submitButton} onClick={handleReview}>
-              Review Service
-            </button>
-            <button className={styles.cancelButton} onClick={onCancel}>
-              Cancel
-            </button>
+            <div className={styles.buttonsContainer}>
+              <button className={styles.submitButton} onClick={handleReview}>
+                Review Service
+              </button>
+              <button className={styles.cancelButton} onClick={onCancel}>
+                Cancel
+              </button>
+            </div>
           </div>
           <div className={styles.reviews}>
-            <h3>Reviews</h3>
+            <h3 className={styles.reviewsTitle}>Reviews</h3>
             <div className={styles.reviewList}>
               {service.reviews.map((review: Reviews) => (
                 <div className={styles.reviewItem} key={review._id}>
-                  <p>{review.comment}</p>
-                  <p>Rating: {review.rating}</p>
+                  <p className={styles.reviewComment}>{review.comment}</p>
+                  <p className={styles.reviewRating}>Rating: {review.rating}</p>
                 </div>
               ))}
             </div>
