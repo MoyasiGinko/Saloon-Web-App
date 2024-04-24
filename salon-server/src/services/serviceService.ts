@@ -239,3 +239,15 @@ export const updateReviewOfServiceS = async (req: Request, res: Response) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 };
+
+// find service by id
+export const findServiceByIdS = async (req: Request, res: Response) => {
+  try {
+    const serviceId = req.params.id;
+    const service = await Service.findById(serviceId);
+    return res.status(200).json({ message: "Service found", service });
+  } catch (error) {
+    console.error("Error finding service", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};

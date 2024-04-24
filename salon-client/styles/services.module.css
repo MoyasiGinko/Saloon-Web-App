@@ -97,12 +97,18 @@
 }
 
 .editButton,
-.deleteButton {
+.deleteButton,
+.reviewButton {
   margin-top: 10px;
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.reviewButton {
+  background: linear-gradient(45deg, #7d45a0c5, #296eb3c1);
+  color: #fff;
 }
 
 .editButton {
@@ -117,7 +123,8 @@
 }
 
 .editButton:hover,
-.deleteButton:hover {
+.deleteButton:hover,
+.reviewButton:hover {
   background-color: #333;
   transform: translateY(-2px);
 }

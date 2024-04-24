@@ -10,18 +10,20 @@ import {
   addReviewToServiceC,
   updateReviewOfServiceC,
   deleteReviewOfServiceC,
+  findServiceByIdC,
 } from "../controllers/serviceController";
 
 const router = express.Router();
 
-router.post("/upload", serviceUploadC);
 router.get("/show", showServiceC);
-router.put("/update/:id", updateServiceC);
-router.delete("/delete/:id", deleteServiceC);
+router.get("/show/:id", findServiceByIdC);
 router.get("/category", showCategoryC);
 router.get("/category/:category", showServiceByCategoryC);
+router.post("/upload", serviceUploadC);
 router.post("/review/:id", addReviewToServiceC);
+router.put("/update/:id", updateServiceC);
 router.put("/review/:id/:reviewId", updateReviewOfServiceC);
+router.delete("/delete/:id", deleteServiceC);
 router.delete("/review/:id/:reviewId", deleteReviewOfServiceC);
 
 export default router;

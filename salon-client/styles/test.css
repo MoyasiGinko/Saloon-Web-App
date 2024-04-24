@@ -1,0 +1,102 @@
+/* reviewService.module.css */
+
+.reviewService {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.serviceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 900px;
+  width: 100%;
+}
+
+.serviceDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.serviceImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.serviceInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.submitButton,
+.cancelButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton {
+  background-color: #0084ff;
+  color: #fff;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+}
+
+.cancelButton {
+  background-color: #ff3b30;
+  color: #fff;
+}
+
+.cancelButton:hover {
+  background-color: #cc372c;
+}
+
+.reviews {
+  width: 100%;
+}
+
+.reviewsTitle {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.reviewList {
+  width: 100%;
+}
+
+.reviewItem {
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.reviewItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.reviewComment {
+  margin-bottom: 5px;
+}
+
+.reviewRating {
+  font-style: italic;
+  color: #666;
+}

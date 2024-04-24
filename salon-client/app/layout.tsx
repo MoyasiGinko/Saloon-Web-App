@@ -18,9 +18,9 @@ export default function RootLayout({
   return (
     <AuthProvider>
       <html lang="en">
+        <ToastContainer />
         <body className="bg-pink-900">
           <Navbar />
-          <ToastContainer />
           <div style={{ marginTop: "64px" }}>{children}</div>
         </body>
       </html>

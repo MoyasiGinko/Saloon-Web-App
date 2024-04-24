@@ -8,13 +8,18 @@ import styles from "../../styles/services.module.css";
 import Modal from "./modal"; // Import Modal component
 import UploadServiceForm from "./uploadService";
 import { EditServiceForm } from "./editService";
+import { ReviewService } from "./reviewService";
 
-export const Services: React.FC = () => {
+export const Services = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [editingService, setEditingService] = useState<Service | null>(null);
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [selectedServiceId, setSelectedServiceId] = useState<string | null>(
+    null
+  );
   const fetchServices = async () => {
     try {
       const response = await axios.get(
@@ -34,6 +39,37 @@ export const Services: React.FC = () => {
   const handleEdit = (service: Service) => {
     setEditingService(service);
     setIsEditModalOpen(true);
+  };
+
+  // const handleReview = (service: Service) => {
+  //   // Implement review functionality
+  //   setSelectedService(service);
+  //   setIsReviewModalOpen(true);
+  // };
+
+  // Fetch service by ID function
+  const fetchServiceById = async (id: string) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/services/show/${id}`
+      );
+      return response.data.service;
+    } catch (error) {
+      console.error("Error fetching service", error);
+      // Handle error appropriately
+    }
+  };
+
+  // Review button click handler
+  const handleReview = async (service: Service) => {
+    setSelectedServiceId(service._id);
+    setIsReviewModalOpen(true);
+  };
+
+  // Cancel review modal handler
+  const handleCancelReview = () => {
+    setIsReviewModalOpen(false);
+    setSelectedServiceId(null);
   };
 
   const handleSave = (newService: Service) => {
@@ -56,12 +92,20 @@ export const Services: React.FC = () => {
 
       setEditingService(null);
       setIsEditModalOpen(false);
+
+      if (!isChanged) {
+        console.log("Service updated successfully");
+      }
     }
   };
 
   const handleCancel = () => {
     setEditingService(null);
     setIsEditModalOpen(false);
+  };
+
+  const handleCloseReviewModal = () => {
+    setIsReviewModalOpen(false);
   };
 
   const handleDelete = async (id: string) => {
@@ -120,18 +164,28 @@ export const Services: React.FC = () => {
               alt="Service"
               className={styles.serviceImage}
             />
-            <button
-              className={styles.editButton}
-              onClick={() => handleEdit(service)}
-            >
-              Edit
-            </button>
-            <button
-              className={styles.deleteButton}
-              onClick={() => handleDelete(service._id)}
-            >
-              Delete
-            </button>
+            <div className={styles.actions}>
+              <button
+                className={styles.reviewButton}
+                onClick={() => handleReview(service)}
+              >
+                Review
+              </button>
+              <div className={styles.buttonsContainer}>
+                <button
+                  className={styles.editButton}
+                  onClick={() => handleEdit(service)}
+                >
+                  Edit
+                </button>
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => handleDelete(service._id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
         ))}
       </div>
@@ -142,6 +196,16 @@ export const Services: React.FC = () => {
             onSave={handleSave}
             onCancel={handleCancel}
           />
+        </Modal>
+      )}
+      {isReviewModalOpen && (
+        <Modal isOpen={isReviewModalOpen} closeModal={handleCancelReview}>
+          {selectedServiceId && (
+            <ReviewService
+              id={selectedServiceId}
+              onCancel={handleCloseReviewModal}
+            />
+          )}
         </Modal>
       )}
     </div>
