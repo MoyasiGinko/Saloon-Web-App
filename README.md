@@ -2,6 +2,16 @@
 
 This repository contains the source code and documentation for a salon web application. The application is designed to provide a seamless experience for both clients and administrators. Below you'll find information about the frontend design architecture, client-view features, admin-view features, and the backend server tasks to be completed.
 
+## Objectives
+
+The project aims to develop a versatile website that serves as both an e-commerce platform and a reservation system, catering to the needs of both shop owners and customers alike. This multi-functional site will function as an open marketplace, allowing various vendors to showcase and sell their products or services while providing customers with a seamless shopping and reservation experience.
+
+The primary focus of the project is to create two distinct sides: an Admin side and a Client side. The Admin side will empower shop owners with robust tools and features to manage their businesses effectively. This includes functionalities such as inventory management, order processing, analytics, and customer relationship management. The Admin side serves as the backbone of the platform, enabling shop owners to streamline their operations and drive business growth.
+
+On the other hand, the Client side of the website is designed to offer an intuitive and engaging experience for customers. It provides easy navigation, product browsing, reservation booking, secure payment processing, and personalized recommendations. Customers can explore a wide range of products or services from different vendors, make purchases, and schedule reservations effortlessly. The Client side aims to enhance user satisfaction and loyalty by delivering a seamless and enjoyable shopping experience.
+
+Overall, the theme of the project revolves around creating a dynamic and inclusive online marketplace that fosters connections between shop owners and customers. By providing a comprehensive platform that caters to the needs of both parties, the project aims to drive business growth, promote entrepreneurship, and enrich the online shopping experience for all stakeholders involved.
+
 ## Frontend Design Architecture
 
 The frontend design architecture is structured to cater to both client and admin views, with separate home index pages for each. Here [visit the client](todo-client.md) documention for more details.
